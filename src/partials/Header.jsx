@@ -27,7 +27,8 @@ const Header = () => {
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const accessToken = urlParams.get("token");
-      if (token) {
+
+      if (accessToken) {
         TokenHelper.create(accessToken);
         window.location.href = "/";
       }
