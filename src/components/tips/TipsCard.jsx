@@ -43,7 +43,7 @@ const TipsCard = () => {
       </header>
 
       {/* Tip Categories */}
-      <div className="max-w-7xl mx-auto p-8">
+      <div className="max-w-7xl mx-auto p-4 lg:p-8">
         {/* Tabs */}
         <Tabs type="tip" activeTab={activeTab} setActiveTab={setActiveTab} />
 

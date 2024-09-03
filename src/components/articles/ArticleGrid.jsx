@@ -81,7 +81,7 @@ const ArticlesGrid = () => {
             <CustomLoader loading={loading} />
           </div>
         ) : (
-          <div className="max-w-7xl mx-auto p-8">
+          <div className="max-w-7xl mx-auto p-4 lg:p-8">
             <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">
               Latest Articles
             </h1>
@@ -98,12 +98,12 @@ const ArticlesGrid = () => {
                       {article.rating || 0} ★
                     </div>
 
-                    <img
-                      className="w-full h-48 object-cover"
-                      src={article.thumbnail}
-                      alt={article._id}
-                    />
                     <Link to={`/articles/${article._id}`}>
+                      <img
+                        className="w-full h-48 object-cover"
+                        src={article.thumbnail}
+                        alt={article._id}
+                      />
                       <div className="p-6">
                         <h2 className="text-2xl font-bold mb-2">
                           {truncateText(article?.title, 30)}

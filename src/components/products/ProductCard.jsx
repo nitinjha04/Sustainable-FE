@@ -46,7 +46,7 @@ const EcoFriendlyProducts = () => {
       </header>
 
       {/* Product Categories */}
-      <div className="max-w-7xl mx-auto p-8">
+      <div className="max-w-7xl mx-auto p-4 lg:p-8">
         {/* Tabs */}
         <Tabs
           type="product"
@@ -76,45 +76,45 @@ const EcoFriendlyProducts = () => {
                     <div className="z-30 absolute top-2 right-2 bg-[#ffd700] text-white text-xs lg:text-sm font-bold py-1 px-2 rounded-lg">
                       {product?.rating} ★
                     </div>
-                    <img
-                      className="w-full h-48 object-cover rounded-md mb-4 select-none"
-                      src={product?.thumbnail}
-                      alt={product?._id}
-                    />
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2 select-none">
-                      {truncateText(product?.title,30)}
-                    </h3>
-                    <div className="text-gray-700 mb-4 select-none">
-                      {" "}
-                      {product?.description?.length > 77 ? (
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: product?.description?.slice(0, 77) + " ...",
-                          }}
-                        ></div>
-                      ) : (
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: product?.description,
-                          }}
-                        ></div>
-                      )}
-                    </div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className=" flex  justify-center items-center my-auto gap-1">
-                        <LiaComments  className=" text-lg"/>
-                        {product?.comments.length}
-                        {/* {Array(Math.round(product?.rating)).fill("★").join("")} */}
-                      </span>
-                      <span className="text-gray-800 font-semibold">
-                        $ {product?.price}
-                      </span>
-                    </div>
-                    <Link
-                      to={`/products/${product._id}`}
-                      className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-200 block text-center"
-                    >
-                      Buy
+                    <Link to={`/products/${product._id}`} className=" ">
+                      <img
+                        className="w-full h-48 object-cover rounded-md mb-4 select-none"
+                        src={product?.thumbnail}
+                        alt={product?._id}
+                      />
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2 select-none">
+                        {truncateText(product?.title, 30)}
+                      </h3>
+                      <div className="text-gray-700 mb-4 select-none">
+                        {" "}
+                        {product?.description?.length > 76 ? (
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                product?.description?.slice(0, 76) + " ...",
+                            }}
+                          ></div>
+                        ) : (
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: product?.description,
+                            }}
+                          ></div>
+                        )}
+                      </div>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className=" flex  justify-center items-center my-auto gap-1">
+                          <LiaComments className=" text-lg" />
+                          {product?.comments.length}
+                          {/* {Array(Math.round(product?.rating)).fill("★").join("")} */}
+                        </span>
+                        <span className="text-gray-800 font-semibold">
+                          $ {product?.price}
+                        </span>
+                      </div>
+                      <div className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-200 block text-center">
+                        Buy
+                      </div>
                     </Link>
                   </div>
                 ))
