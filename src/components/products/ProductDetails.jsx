@@ -97,7 +97,7 @@ const ProductDetails = () => {
           </div>
 
           {/* Product Description */}
-          <div className="max-w-7xl mx-auto p-2 lg:p-8">
+          <div className="max-w-7xl mx-auto p-2 py-4 lg:p-8">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">
               Description
             </h2>
