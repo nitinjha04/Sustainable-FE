@@ -129,68 +129,6 @@ const TipsDetails = () => {
             setPost={setTip}
           />
 
-          {/* User Reviews Section */}
-          {/* <div className="bg-gray-100 p-6 rounded-lg mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              User Reviews
-            </h2>
-            {tip.reviews.length > 0 ? (
-              tipData.reviews.map((review, index) => (
-                <div key={index} className="mb-4 border-b pb-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <span className="text-yellow-500 text-lg">
-                        {Array(review.rating).fill("★").join("")}
-                      </span>
-                      <span className="ml-2 text-gray-700 font-medium">
-                        {review.user}
-                      </span>
-                    </div>
-                    <span className="text-gray-500">{review.rating} ★</span>
-                  </div>
-                  <p className="text-gray-700 mt-2">{review.comment}</p>
-                </div>
-              ))
-            ) : (
-              <p className="text-gray-600">
-                No reviews yet. Be the first to leave one!
-              </p>
-            )}
-          </div> */}
-
-          {/* Add Review Section */}
-          {/* <div className="bg-gray-100 p-6 rounded-lg">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              Add Your Review
-            </h2>
-            <form onSubmit={handleReviewSubmit}>
-              <div className="mb-4">
-                <label className="block text-gray-700 mb-2">Rating</label>
-                <ReactStars
-                  count={5}
-                  onChange={handleRatingChange}
-                  size={30}
-                  activeColor="#ffd700"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 mb-2">Your Review</label>
-                <textarea
-                  className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                  rows="5"
-                  placeholder="What did you like or dislike about this tip?"
-                  value={userReview}
-                  onChange={(e) => setUserReview(e.target.value)}
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition duration-200"
-              >
-                Submit Review
-              </button>
-            </form>
-          </div> */}
         </div>
       )}
     </div>

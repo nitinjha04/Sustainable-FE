@@ -101,12 +101,12 @@ const ArticlesGrid = () => {
                     <img
                       className="w-full h-48 object-cover"
                       src={article.thumbnail}
-                      alt={article.title}
+                      alt={article._id}
                     />
                     <Link to={`/articles/${article._id}`}>
                       <div className="p-6">
                         <h2 className="text-2xl font-bold mb-2">
-                          {article.title}
+                          {truncateText(article?.title, 30)}
                         </h2>
                         <p className="text-gray-700 mb-4">
                           {article?.description?.length > 80 ? (

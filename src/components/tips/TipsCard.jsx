@@ -75,10 +75,10 @@ const TipsCard = () => {
                       <img
                         className="z-10 h-40 w-full rounded-md object-contain mb-4"
                         src={tip?.thumbnail}
-                        alt={tip?.title}
+                        alt={tip?._id}
                       />
                       <h1 className="text-lg lg:text-2xl font-semibold">
-                        {truncateText(tip?.title, 40)}
+                        {truncateText(tip?.title, 30)}
                       </h1>
                       <p className="w-full text-sm lg:text-base text-gray-600 mt-2">
                         {tip?.description?.length > 80 ? (

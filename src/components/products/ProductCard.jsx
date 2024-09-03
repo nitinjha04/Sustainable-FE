@@ -6,6 +6,7 @@ import LikeButton from "../LikeButton";
 import CustomLoader from "../CustomLoader";
 import Tabs from "../Tabs";
 import { LiaComments } from "react-icons/lia";
+import { truncateText } from "../../data/func";
 
 const EcoFriendlyProducts = () => {
   const [activeTab, setActiveTab] = useState(categories.product[0].name);
@@ -78,10 +79,10 @@ const EcoFriendlyProducts = () => {
                     <img
                       className="w-full h-48 object-cover rounded-md mb-4 select-none"
                       src={product?.thumbnail}
-                      alt={product?.title}
+                      alt={product?._id}
                     />
                     <h3 className="text-xl font-semibold text-gray-900 mb-2 select-none">
-                      {product?.title}
+                      {truncateText(product?.title,30)}
                     </h3>
                     <div className="text-gray-700 mb-4 select-none">
                       {" "}
