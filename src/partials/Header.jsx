@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { FaSearch, FaRegUser, FaPlus } from "react-icons/fa";
 import { useThemeContext } from "../context/ThemeProvider";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import TokenHelper from "../helpers/Token.helper";
 
 const Header = () => {
+  const params = useParams();
+
   const navigate = useNavigate();
   const { setLoginModal, setModalType, user, setUser } = useThemeContext();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -21,7 +23,24 @@ const Header = () => {
 
   const dropdownRef = useRef(null);
 
-  // Close the dropdown if clicked outside
+  const handleGoogleCallback = async () => {
+    try {
+      // Extract the access token from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const accessToken = urlParams.get("token");
+      if (token) {
+        TokenHelper.create(accessToken);
+        window.location.href = "/";
+      }
+    } catch (error) {
+      console.error("Error handling Google authentication callback:", error);
+    }
+  };
+
+  useEffect(() => {
+    handleGoogleCallback();
+  }, []);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {

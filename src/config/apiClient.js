@@ -3,7 +3,7 @@ import TokenHelper from "../helpers/Token.helper";
 
 // Create an Axios instance
 const apiClient = axios.create({
-  baseURL: "http://localhost:53321/api", // Set your base URL here
+  baseURL: "https://sustainable-services.vercel.app/api", // Set your base URL here
 });
 
 // Request interceptor
