@@ -86,6 +86,7 @@ const ProductDetails = () => {
                 </div>
                 <a
                   href={product?.productLink}
+                  target="_blank"
                   className=" flex justify-center items-center gap-1  bg-green-500 outline-none text-white py-2 px-4 rounded-lg border-white border-solid hover:bg-green-600 transition duration-200 text-center"
                 >
                   Buy Now

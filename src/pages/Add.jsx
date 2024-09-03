@@ -52,8 +52,13 @@ const Add = () => {
     data.category = selectedCategory.toLowerCase().split(" ").join("");
 
     if (type === "product") {
-      if (pros.length > 0) data.pros = pros;
-      if (cons.length > 0) data.cons = cons;
+      if (pros.length === 0 || cons.length === 0) {
+        toast.error("please add pros and cons");
+        return;
+      }
+
+      data.pros = pros;
+      data.cons = cons;
     }
 
     if (type === "tip") {
@@ -282,7 +287,7 @@ const Add = () => {
                 Product Link
               </label>
               <Controller
-                name="productUrl"
+                name="productLink"
                 control={control}
                 render={({ field }) => (
                   <input
