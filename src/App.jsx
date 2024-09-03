@@ -140,6 +140,7 @@ function App() {
 
         <AuthModal />
         <Toaster />
+        <Analytics />
       </div>
     </>
   );
