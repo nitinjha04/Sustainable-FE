@@ -10,35 +10,12 @@ import ArticleDetail from "./components/articles/ArticleDetails";
 import EcoFriendlyProducts from "./components/products/ProductCard";
 import ProductDetails from "./components/products/ProductDetails";
 import AuthModal from "./components/AuthModal";
-import UserService from "./services/user.service";
-import { useStateContext } from "./context/ContextProvider";
-import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import Add from "./pages/Add";
 import TipsCard from "./components/tips/TipsCard";
 import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
-  const { user, setUser } = useStateContext();
-
-  useEffect(() => {
-    const fetchCurrentUser = async () => {
-      if (!user) {
-        console.log("saving");
-        try {
-          const response = await UserService.getCurrentUser();
-          if (response.data && response.data.result) {
-            console.log(response.data.result);
-            setUser(response.data.result);
-          }
-        } catch (error) {
-          console.error("Failed to fetch current user", error);
-        }
-      }
-    };
-
-    fetchCurrentUser();
-  }, [user, setUser]);
 
   const router = createBrowserRouter([
     {

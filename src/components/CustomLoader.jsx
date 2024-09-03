@@ -6,7 +6,7 @@ const override = {
   margin: "0 auto",
   borderColor: "red",
 };
-const CustomLoader = ({ color = "#22C55E", loading = false }) => {
+const CustomLoader = ({ color = "#5F6921", loading = false }) => {
   return (
     <BarLoader
       color={color}

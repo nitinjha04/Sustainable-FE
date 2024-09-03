@@ -344,7 +344,7 @@ const Add = () => {
                 <button
                   type="button"
                   onClick={addTip}
-                  className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600"
+                  className="bg-custom-btn-3 hover:bg-custom-btn-4 text-white py-2 px-4 rounded-md "
                 >
                   Save
                 </button>
@@ -424,7 +424,7 @@ const Add = () => {
                   <button
                     type="button"
                     onClick={addPro}
-                    className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600"
+                    className="bg-custom-btn-3 hover:bg-custom-btn-4 text-white py-2 px-4 rounded-md "
                   >
                     Add
                   </button>
@@ -438,7 +438,7 @@ const Add = () => {
                       <button
                         type="button"
                         onClick={() => deletePro(index)}
-                        className="text-red-500 ml-2 "
+                        className="text-red-800 ml-2 "
                       >
                         Remove
                       </button>
@@ -498,7 +498,7 @@ const Add = () => {
           <div className="flex justify-end space-x-4 pt-8">
             <button
               type="submit"
-              className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600"
+              className="bg-custom-btn-3 hover:bg-custom-btn-4 text-white py-2 px-4 rounded-md "
             >
               Submit
             </button>
