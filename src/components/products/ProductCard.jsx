@@ -86,10 +86,10 @@ const EcoFriendlyProducts = () => {
                     </h3>
                     <div className="text-gray-700 mb-4 select-none">
                       {" "}
-                      {product?.description?.length > 80 ? (
+                      {product?.description?.length > 77 ? (
                         <div
                           dangerouslySetInnerHTML={{
-                            __html: product?.description?.slice(0, 80) + " ...",
+                            __html: product?.description?.slice(0, 77) + " ...",
                           }}
                         ></div>
                       ) : (
