@@ -113,8 +113,9 @@ const Header = () => {
                     const token = TokenHelper.get();
                     if (token) {
                       TokenHelper.delete();
-                      setUser({});
+                      setUser();
                       navigate("/");
+                      setDropdownOpen(false);
                     }
                   }}
                 >
