@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Services = () => {
   return (
-    <div className="flex flex-col items-center text-center px-6 lg:px-16 py-16 bg-white">
+    <div className="flex flex-col items-center text-center px-6 lg:px-16 py-16 bg-custom-bg">
       <h1 className=" text-green-900 text-3xl lg:text-5xl font-semibold mb-12">
         What We Offer
       </h1>
@@ -20,7 +20,7 @@ const Services = () => {
               src={serv.img}
               alt={serv.title}
             />
-            <h1 className="text-xl lg:text-2xl font-medium text-gray-800">
+            <h1 className="text-xl underline underline-offset-8 lg:text-2xl font-medium text-gray-800">
               {serv.title}
             </h1>
             <p className="text-sm lg:text-base text-gray-600 lg:w-3/4">

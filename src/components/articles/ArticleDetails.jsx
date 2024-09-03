@@ -32,14 +32,14 @@ const ArticleDetailFullWidth = () => {
   }, []);
 
   return (
-    <div className=" w-full h-full">
+    <div className=" w-full h-full bg-custom-bg">
       {loading ? (
-        <div className=" my-auto flex justify-center items-center  h-[90vh]">
+        <div className=" my-auto flex justify-center items-center  h-[90vh] bg-custom-bg">
           {" "}
           <CustomLoader loading={loading} />
         </div>
       ) : (
-        <div className="w-full min-h-screen bg-gray-100">
+        <div className="w-full min-h-screen bg-custom-bg">
           {/* Article Header */}
           <div
             className="relative w-full h-[60vh] bg-cover bg-center"
@@ -74,7 +74,7 @@ const ArticleDetailFullWidth = () => {
             <div className="bg-white p-8 rounded-lg shadow-lg mb-8">
               <div className=" relative text-gray-800 text-lg md:text-xl leading-relaxed">
                 <LikeButton
-                  customCss=" right-2"
+                  customCss=" -right-6  -top-6"
                   particular={true}
                   post={article}
                   setPost={setArticle}

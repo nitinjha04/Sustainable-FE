@@ -1,5 +1,5 @@
-import { useThemeContext } from "../context/ThemeProvider";
-import { FcGoogle } from "react-icons/fc"; 
+import { useStateContext } from "../context/ContextProvider";
+import { FcGoogle } from "react-icons/fc";
 import AuthService from "../services/auth.service";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const AuthModal = () => {
   const { loginModal, setLoginModal, modalType, toggleModalType, setUser } =
-    useThemeContext();
+    useStateContext();
   const {
     register,
     handleSubmit,
@@ -44,7 +44,7 @@ const AuthModal = () => {
         setUser(response.data.result.user);
 
         console.log("Signup successful:", response.data);
-        setLoginModal(false); 
+        setLoginModal(false);
 
         toast.success("Signup successful");
       }
@@ -66,7 +66,7 @@ const AuthModal = () => {
 
   return (
     <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-[22rem] lg:max-w-md w-full relative">
+      <div className="bg-custom-bg p-8 rounded-lg shadow-lg max-w-[22rem] lg:max-w-md w-full relative">
         <h2 className="text-2xl font-bold mb-4 text-center">
           {modalType === "login" ? "Login" : "Sign Up"}
         </h2>

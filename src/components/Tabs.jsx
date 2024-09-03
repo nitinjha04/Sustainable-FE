@@ -9,7 +9,7 @@ const Tabs = ({ type,activeTab,setActiveTab }) => {
           key={category.name}
           className={` text-sm lg:text-base py-2 px-4 rounded-t-lg focus:outline-none ${
             activeTab === category.name
-              ? "bg-green-500 text-white"
+              ? "bg-custom-btn text-white"
               : "bg-gray-200 text-gray-800"
           }`}
           onClick={() => setActiveTab(category.name)}

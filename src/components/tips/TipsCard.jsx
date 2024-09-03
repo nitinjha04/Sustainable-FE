@@ -35,9 +35,9 @@ const TipsCard = () => {
   }, [activeTab]);
 
   return (
-    <div className="w-full min-h-screen z-30 bg-gray-100">
+    <div className="w-full min-h-screen z-30 bg-custom-bg">
       {/* Page Header */}
-      <header className="bg-green-900 text-white z-30 py-8 text-center">
+      <header className="bg-custom-btn-2 text-white z-30 py-8 text-center">
         <h1 className="text-4xl font-bold">Tips</h1>
         <p className="mt-2 text-lg">Explore our collection of Tips.</p>
       </header>

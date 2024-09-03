@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer id="about" className="bg-green-900 text-white py-10">
+    <footer id="about" className="bg-custom-btn-2 text-white py-10">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
         {/* Navigation Links */}
         <div>
@@ -95,7 +95,7 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className="border-t border-green-800 mt-8 pt-4 text-center text-sm">
+      <div className="border-t border-custom-btn mt-8 pt-4 text-center text-sm">
         <p>&copy; 2024 Sustainable Website. All rights reserved.</p>
       </div>
     </footer>

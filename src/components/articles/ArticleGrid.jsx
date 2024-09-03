@@ -34,9 +34,9 @@ const ArticlesGrid = () => {
   }, [activeTab]);
 
   return (
-    <div className="w-full min-h-screen bg-gray-100">
+    <div className="w-full min-h-screen bg-custom-bg">
       {/* Page Header */}
-      <header className="bg-green-900 text-white py-8 text-center">
+      <header className="bg-custom-btn-2 text-white py-8 text-center">
         <h1 className="text-4xl font-bold">Articles</h1>
         <p className="mt-2 text-lg">Explore our collection of Articles.</p>
       </header>
@@ -102,7 +102,7 @@ const ArticlesGrid = () => {
                         </p>
                         <a
                           href={article.link}
-                          className="text-blue-600 hover:text-blue-800 font-semibold"
+                          className="text-custom-btn hover:bg-custom-btn-2 underline underline-offset-4 font-semibold"
                         >
                           Read More
                         </a>

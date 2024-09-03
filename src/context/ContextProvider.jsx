@@ -2,10 +2,13 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const Context = createContext();
 
-export function ThemeProvider({ children }) {
+export function ContextProvider({ children }) {
   const [user, setUser] = useState();
   const [loginModal, setLoginModal] = useState(false);
-  const [modalType, setModalType] = useState("login"); 
+  const [modalType, setModalType] = useState("login");
+
+  const [postDetails, setPostDetails] = useState();
+  const [shareModal, setShareModal] = useState(false);
 
   const toggleModalType = () => {
     setModalType((prevType) => (prevType === "login" ? "signup" : "login"));
@@ -21,6 +24,10 @@ export function ThemeProvider({ children }) {
         modalType,
         setModalType,
         toggleModalType,
+        shareModal,
+        setShareModal,
+        postDetails,
+        setPostDetails,
       }}
     >
       {children}
@@ -28,6 +35,6 @@ export function ThemeProvider({ children }) {
   );
 }
 
-export function useThemeContext() {
+export function useStateContext() {
   return useContext(Context);
 }

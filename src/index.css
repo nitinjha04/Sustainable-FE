@@ -1,11 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "YourCustomFont";
+  src: url("./assets/fonts/ClashDisplay-Variable.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-  font-family: "Manrope", sans-serif;
+  font-family: "YourCustomFont", sans-serif;
+  background-color: #f6f3ed;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -21,7 +27,6 @@ input[type="number"] {
 
 /* Webkit browsers */
 ::-webkit-scrollbar {
-
   width: 3px; /* Width of the scrollbar */
 }
 

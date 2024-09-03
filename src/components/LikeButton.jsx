@@ -1,7 +1,7 @@
 import React from "react";
 import { FaHeart } from "react-icons/fa";
 import contentService from "../services/content.service";
-import { useThemeContext } from "../context/ThemeProvider";
+import { useStateContext } from "../context/ContextProvider";
 import toast from "react-hot-toast";
 
 const LikeButton = ({
@@ -10,7 +10,7 @@ const LikeButton = ({
   particular = false,
   customCss = "top-2 left-2",
 }) => {
-  const { setLoginModal, setModalType, user } = useThemeContext();
+  const { setLoginModal, setModalType, user } = useStateContext();
 
   console.log({ post });
 
@@ -102,7 +102,7 @@ const LikeButton = ({
     }
   };
   return (
-    <div className={` ${customCss} absolute bg-gray-50 p-2 text-center items-center  z-30 flex flex-row gap-2 rounded-md border `}>
+    <div className={` ${customCss} cursor-pointer absolute bg-gray-50 p-2 text-center items-center  z-30 flex flex-row gap-2 rounded-md border `}>
       <FaHeart
         className={`text-3xl ${
           checkLiked(post) ? "text-red-500" : "text-gray-400"

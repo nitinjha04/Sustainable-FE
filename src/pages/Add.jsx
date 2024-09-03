@@ -10,11 +10,11 @@ import { categories } from "../data/data";
 import contentService from "../services/content.service";
 import toast from "react-hot-toast";
 import fileUploadService from "../services/fileUpload.service";
-import { useThemeContext } from "../context/ThemeProvider";
+import { useStateContext } from "../context/ContextProvider";
 
 const Add = () => {
   const navigate = useNavigate();
-  const { user } = useThemeContext();
+  const { user } = useStateContext();
 
   const { control, handleSubmit, setValue } = useForm();
   const [image, setImage] = useState(null);

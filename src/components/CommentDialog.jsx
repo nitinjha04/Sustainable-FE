@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import { toast } from "react-hot-toast"; 
-import { useThemeContext } from "../context/ThemeProvider";
+import { useStateContext } from "../context/ContextProvider";
 import contentService from "../services/content.service";
 
 import { CiUser } from "react-icons/ci";
@@ -12,7 +12,7 @@ const CommentDialog = ({
   customCss = "p-8 bg-white",
   subCustomCss = "s",
 }) => {
-  const { setLoginModal, setModalType, user } = useThemeContext();
+  const { setLoginModal, setModalType, user } = useStateContext();
 
   const [rating, setRating] = useState(0);
   const [userReview, setUserReview] = useState("");
@@ -98,7 +98,7 @@ const CommentDialog = ({
           <div className="mb-4">
             <label className="block text-gray-700 mb-2">Your Review</label>
             <textarea
-              className=" resize-none w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              className=" resize-none w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-btn-4"
               rows="5"
               placeholder="What did you like or dislike about this product?"
               value={userReview}
@@ -107,7 +107,7 @@ const CommentDialog = ({
           </div>
           <button
             type="submit"
-            className="bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition duration-200"
+            className="bg-custom-btn-3 hover:bg-custom-btn-4 text-white py-2 px-4 rounded-lg  transition duration-200"
           >
             Submit Review
           </button>

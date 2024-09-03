@@ -33,8 +33,6 @@ const ProductDetails = () => {
     api();
   }, []);
 
-  
-
   return (
     <div className=" w-full h-full">
       {loading ? (
@@ -43,7 +41,7 @@ const ProductDetails = () => {
           <CustomLoader loading={loading} />
         </div>
       ) : (
-        <div className="w-full py-8 min-h-screen bg-gray-100">
+        <div className="w-full py-8 min-h-screen bg-custom-bg">
           {/* Product Details */}
           <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row gap-8">
             {/* Product Image */}
@@ -87,7 +85,7 @@ const ProductDetails = () => {
                 <a
                   href={product?.productLink}
                   target="_blank"
-                  className=" flex justify-center items-center gap-1  bg-green-500 outline-none text-white py-2 px-4 rounded-lg border-white border-solid hover:bg-green-600 transition duration-200 text-center"
+                  className=" flex justify-center items-center gap-1  bg-custom-btn-3 hover:bg-custom-btn-4 outline-none text-white py-2 px-4 rounded-lg border-white border-solid  transition duration-200 text-center"
                 >
                   Buy Now
                   <CgArrowTopLeftO className=" rotate-90" />
@@ -148,7 +146,12 @@ const ProductDetails = () => {
           </div>
 
           {/* Comments Section */}
-          <CommentDialog customCss="p-8 bg-gray-100" subCustomCss=" bg-white " post={product} setPost={setProduct} />
+          <CommentDialog
+            customCss="p-8 bg-custom-bg"
+            subCustomCss=" bg-white "
+            post={product}
+            setPost={setProduct}
+          />
         </div>
       )}
     </div>

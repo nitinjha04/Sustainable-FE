@@ -36,9 +36,9 @@ const EcoFriendlyProducts = () => {
   }, [activeTab]);
 
   return (
-    <div className="w-full min-h-screen bg-gray-100">
+    <div className="w-full min-h-screen bg-custom-bg">
       {/* Page Header */}
-      <header className="bg-green-900 text-white py-8 text-center">
+      <header className="bg-custom-btn-2 text-white py-8 text-center">
         <h1 className="text-4xl font-bold">Eco-Friendly Products</h1>
         <p className="mt-2 text-lg">
           Explore our collection of sustainable and eco-friendly products.
@@ -112,7 +112,7 @@ const EcoFriendlyProducts = () => {
                           $ {product?.price}
                         </span>
                       </div>
-                      <div className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-200 block text-center">
+                      <div className="bg-custom-btn-3 hover:bg-custom-btn-4 text-white py-2 px-4 rounded-lg  transition duration-200 block text-center">
                         Buy
                       </div>
                     </Link>

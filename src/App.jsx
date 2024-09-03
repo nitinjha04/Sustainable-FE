@@ -1,8 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 
-import { Analytics } from "@vercel/analytics/react";
-
 import Home from "./pages/Home";
 import Header from "./partials/Header";
 import Footer from "./partials/Footer";
@@ -13,7 +11,7 @@ import EcoFriendlyProducts from "./components/products/ProductCard";
 import ProductDetails from "./components/products/ProductDetails";
 import AuthModal from "./components/AuthModal";
 import UserService from "./services/user.service";
-import { useThemeContext } from "./context/ThemeProvider";
+import { useStateContext } from "./context/ContextProvider";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import Add from "./pages/Add";
@@ -21,7 +19,7 @@ import TipsCard from "./components/tips/TipsCard";
 import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
-  const { user, setUser } = useThemeContext();
+  const { user, setUser } = useStateContext();
 
   useEffect(() => {
     const fetchCurrentUser = async () => {
@@ -140,7 +138,6 @@ function App() {
 
         <AuthModal />
         <Toaster />
-        <Analytics />
       </div>
     </>
   );

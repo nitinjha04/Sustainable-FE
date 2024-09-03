@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaSearch, FaRegUser, FaPlus } from "react-icons/fa";
-import { useThemeContext } from "../context/ThemeProvider";
+import { useStateContext } from "../context/ContextProvider";
 import toast from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import TokenHelper from "../helpers/Token.helper";
@@ -9,7 +9,7 @@ const Header = () => {
   const params = useParams();
 
   const navigate = useNavigate();
-  const { setLoginModal, setModalType, user, setUser } = useThemeContext();
+  const { setLoginModal, setModalType, user, setUser } = useStateContext();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -55,7 +55,7 @@ const Header = () => {
   }, [setDropdownOpen]);
 
   return (
-    <div className="text-lg z-10 font-normal w-full items-center lg:px-12 px-6 my-auto flex justify-between h-14 lg:h-20 bg-white shadow-sm border-[1px] border-solid">
+    <div className="text-lg z-10 font-normal w-full items-center lg:px-12 px-6 my-auto flex justify-between h-14 lg:h-20 bg-custom-bg shadow-sm border-2 border-solid">
       <Link to="/" className="text-2xl">
         {/* Sustainable */}
         <img className=" h-12 z-10" src="/sustainable-header.png" alt="" />

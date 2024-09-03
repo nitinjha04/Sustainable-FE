@@ -2,7 +2,7 @@ import React from "react";
 
 const Carousel = () => {
   return (
-    <div className="flex flex-col-reverse lg:flex-row justify-between items-center px-8 lg:px-24 py-16 lg:py-32 bg-gradient-to-r from-blue-400 to-blue-300 w-full">
+    <div className="flex flex-col-reverse lg:flex-row justify-between items-center px-8 lg:px-24 py-16 lg:py-32 bg-gradient-to-r from-custom-btn-2 to-custom-btn w-full">
       {/* Text Section */}
       <div className="flex-1 flex flex-col gap-8 items-center lg:items-start text-center lg:text-left">
         <h1 className="text-4xl lg:text-7xl font-bold text-white leading-tight">
@@ -19,7 +19,7 @@ const Carousel = () => {
       {/* Image Section */}
       <div className="flex-1 flex items-center justify-center">
         <img
-          className="h-72 lg:h-[500px] w-full lg:w-[80%] object-cover rounded-lg shadow-lg"
+          className="h-72 lg:h-[700px] select-none w-full lg:w-[70%] object-cover  object-[40%]  rounded-lg shadow-lg"
           src="https://images.unsplash.com/photo-1683248891907-8471945781a5"
           alt="Sustainable Living"
         />
