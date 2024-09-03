@@ -1,5 +1,5 @@
 import { useThemeContext } from "../context/ThemeProvider";
-import { FcGoogle } from "react-icons/fc"; // Import Google icon
+import { FcGoogle } from "react-icons/fc"; 
 import AuthService from "../services/auth.service";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -44,7 +44,7 @@ const AuthModal = () => {
         setUser(response.data.result.user);
 
         console.log("Signup successful:", response.data);
-        setLoginModal(false); // Close modal on successful signup
+        setLoginModal(false); 
 
         toast.success("Signup successful");
       }

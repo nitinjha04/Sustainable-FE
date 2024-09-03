@@ -7,30 +7,6 @@ import LikeButton from "../LikeButton";
 import { Link } from "react-router-dom";
 import Tabs from "../Tabs";
 
-const articlesData = [
-  {
-    title: "10 Ways to Reduce Your Carbon Footprint",
-    imageUrl: "https://images.unsplash.com/photo-1695712551762-4788429015f1",
-    excerpt:
-      "Learn how small changes can make a big impact on the environment.",
-    link: "/articles/reduce-carbon-footprint",
-  },
-  {
-    title: "Sustainable Living: A Beginner's Guide",
-    imageUrl: "https://images.unsplash.com/photo-1695712551762-4788429015f1",
-    excerpt: "Start your journey towards a more sustainable lifestyle today.",
-    link: "/articles/sustainable-living-guide",
-  },
-  {
-    title: "The Best Eco-Friendly Products of 2024",
-    imageUrl: "https://images.unsplash.com/photo-1695712551762-4788429015f1",
-    excerpt:
-      "Discover the top eco-friendly products that are worth your investment.",
-    link: "/articles/best-eco-friendly-products-2024",
-  },
-  // Add more articles as needed
-];
-
 const ArticlesGrid = () => {
   const [activeTab, setActiveTab] = useState(categories.article[0].name);
   const [loading, setLoading] = useState(true);

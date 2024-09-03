@@ -43,9 +43,6 @@ const Add = () => {
     if (!editorContent || !file || !selectedCategory) {
       toast.error("Please Fill All Details");
     }
-    // if (type === "tip") {
-    //   data.tips = tips;
-    // }
 
     data.description = editorContent;
     data.file = file;

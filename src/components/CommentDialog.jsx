@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactStars from "react-rating-stars-component";
-import { toast } from "react-hot-toast"; // Assuming you're using react-hot-toast for notifications
+import { toast } from "react-hot-toast"; 
 import { useThemeContext } from "../context/ThemeProvider";
 import contentService from "../services/content.service";
 

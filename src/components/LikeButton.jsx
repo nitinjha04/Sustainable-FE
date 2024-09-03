@@ -83,7 +83,6 @@ const LikeButton = ({
     }
   };
 
-  // Utility function to debounce the API call
   const debounce = (func, delay) => {
     let timeoutId;
     return (...args) => {

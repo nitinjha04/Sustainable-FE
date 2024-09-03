@@ -13,7 +13,6 @@ class AuthService {
 
   loginWithGoogle = async () => {
     try {
-      // Open the Google authentication URL
       window.open(`https://sustainable-services.vercel.app/api/users/google`, "_self");
     } catch (error) {
       console.error("Error initiating Google authentication:", error);

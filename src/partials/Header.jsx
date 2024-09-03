@@ -78,7 +78,6 @@ const Header = () => {
                   className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
                   onClick={() => {
                     setDropdownOpen(false);
-                    // Add your "Add Tips" logic here
                   }}
                 >
                   Add Tips
@@ -89,7 +88,6 @@ const Header = () => {
                   className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
                   onClick={() => {
                     setDropdownOpen(false);
-                    // Add your "Add Product" logic here
                   }}
                 >
                   Add Product
@@ -100,7 +98,6 @@ const Header = () => {
                   className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
                   onClick={() => {
                     setDropdownOpen(false);
-                    // Add your "Add Article" logic here
                   }}
                 >
                   Add Article

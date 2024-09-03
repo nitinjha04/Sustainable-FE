@@ -7,27 +7,6 @@ import LikeButton from "../LikeButton";
 import CommentDialog from "../CommentDialog";
 
 const TipsDetails = () => {
-  // Mock JSON data simulating API response
-  const tipData = {
-    title: "How to Save Energy at Home",
-    imageUrl: "https://earthhero.com/cdn/shop/products/Unpaste_1.jpg",
-    content: `Saving energy at home is not only beneficial for your wallet but also for the environment. 
-              Here are some tips to get you started:
-              - Turn off lights when not in use.
-              - Use energy-efficient appliances.
-              - Insulate your home to reduce heating and cooling costs.
-              - Consider installing solar panels to generate your own electricity.`,
-    author: "Jane Doe",
-    date: "August 31, 2024",
-    reviews: [
-      { rating: 5, comment: "Very helpful tips!", user: "John Doe" },
-      {
-        rating: 4,
-        comment: "Great ideas, but some are costly.",
-        user: "Emily Smith",
-      },
-    ],
-  };
 
   const params = useParams();
   const [tip, setTip] = useState({});
