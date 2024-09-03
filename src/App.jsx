@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 
+import { Analytics } from "@vercel/analytics/react";
+
 import Home from "./pages/Home";
 import Header from "./partials/Header";
 import Footer from "./partials/Footer";
