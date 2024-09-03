@@ -130,8 +130,8 @@ const Header = () => {
         <FaRegUser
           onClick={() => {
             if (user) return;
-            setModalType("login"); // Set to login or signup
-            setLoginModal(true); // Open the modal
+            setModalType("login");
+            setLoginModal(true); 
           }}
           className="text-xl cursor-pointer"
         />
