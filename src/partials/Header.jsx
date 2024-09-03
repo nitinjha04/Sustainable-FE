@@ -23,23 +23,22 @@ const Header = () => {
 
   const dropdownRef = useRef(null);
 
-  // const handleGoogleCallback = async () => {
-  //   try {
-  //     // Extract the access token from the URL
-  //     const urlParams = new URLSearchParams(window.location.search);
-  //     const accessToken = urlParams.get("token");
-  //     if (token) {
-  //       TokenHelper.create(accessToken);
-  //       window.location.href = "/";
-  //     }
-  //   } catch (error) {
-  //     console.error("Error handling Google authentication callback:", error);
-  //   }
-  // };
+  const handleGoogleCallback = async () => {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const accessToken = urlParams.get("token");
+      if (token) {
+        TokenHelper.create(accessToken);
+        window.location.href = "/";
+      }
+    } catch (error) {
+      console.error("Error handling Google authentication callback:", error);
+    }
+  };
 
-  // useEffect(() => {
-  //   handleGoogleCallback();
-  // }, []);
+  useEffect(() => {
+    handleGoogleCallback();
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
