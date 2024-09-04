@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
         {/* Navigation Links */}
         <div>
-          <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+          <h3 className="text-lg font-semibold mb-4 underline underline-offset-4">Quick Links</h3>
           <ul>
             <li className="mb-2">
               <Link to={"/"} className="hover:text-green-300 transition">
@@ -51,7 +51,7 @@ const Footer = () => {
 
         {/* Contact Information */}
         <div>
-          <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+          <h3 className="text-lg font-semibold mb-4 underline underline-offset-4">Contact Us</h3>
           <p className="mb-2">123 Green Road, Sustainability City</p>
           <p className="mb-2">Email: contact@sustainableweb.com</p>
           <p className="mb-2">Phone: +1 234 567 890</p>
@@ -73,7 +73,7 @@ const Footer = () => {
 
         {/* Newsletter Subscription */}
         <div>
-          <h3 className="text-lg font-semibold mb-4">Stay Updated</h3>
+          <h3 className="text-lg font-semibold mb-4 underline underline-offset-4">Stay Updated</h3>
           <p className="mb-4">
             Subscribe to our newsletter for the latest tips, products, and
             articles.
