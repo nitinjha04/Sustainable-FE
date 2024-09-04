@@ -305,7 +305,7 @@ const Add = () => {
             <label className="block text-sm font-medium text-gray-700">
               Select a Category
             </label>
-            <div className="flex space-x-4 mt-2">{renderCategoryButtons()}</div>
+            <div className="flex flex-wrap gap-2 mt-2">{renderCategoryButtons()}</div>
           </div>
 
           {/* React Quill Editor for Articles */}
