@@ -179,7 +179,7 @@ const Add = () => {
   }, [user]);
 
   return (
-    <div className="  py-8">
+    <div className=" lg:py-6 py-0  ">
       <div className="max-w-7xl border border-solid border-gray-200 mx-auto p-8  bg-white shadow-lg rounded-lg">
         <h1 className="text-2xl font-bold mb-6 text-center">
           Add {type?.charAt(0)?.toUpperCase() + type?.slice(1)}
