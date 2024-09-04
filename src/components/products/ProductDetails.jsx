@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactStars from "react-rating-stars-component";
+import parse from 'html-react-parser';
 
 import { useParams } from "react-router-dom";
 import contentService from "../../services/content.service";
@@ -101,11 +102,10 @@ const ProductDetails = () => {
             </h2>
             <p className="text-gray-700">
               {" "}
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: product?.description,
-                }}
-              ></div>
+              <div className=" prose min-w-full pt-5">
+                  {" "}
+                  {parse(`${product?.description}`)}
+                </div>
             </p>
           </div>
 

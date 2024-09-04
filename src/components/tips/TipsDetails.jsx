@@ -5,9 +5,9 @@ import contentService from "../../services/content.service";
 import CustomLoader from "../CustomLoader";
 import LikeButton from "../LikeButton";
 import CommentDialog from "../CommentDialog";
+import parse from "html-react-parser";
 
 const TipsDetails = () => {
-
   const params = useParams();
   const [tip, setTip] = useState({});
   const [loading, setLoading] = useState(true);
@@ -85,12 +85,10 @@ const TipsDetails = () => {
 
           {/* Description */}
           <div className="text-gray-800 text-xl leading-relaxed mb-12">
-            <div
-              className=" pt-5"
-              dangerouslySetInnerHTML={{
-                __html: tip?.description,
-              }}
-            ></div>
+            <div className=" prose min-w-full pt-5">
+              {" "}
+              {parse(`${tip?.description}`)}
+            </div>
           </div>
           {/* Content */}
           <div className="text-gray-800 text-xl leading-relaxed mb-12">
@@ -107,7 +105,6 @@ const TipsDetails = () => {
             post={tip}
             setPost={setTip}
           />
-
         </div>
       )}
     </div>

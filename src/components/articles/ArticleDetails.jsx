@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import parse from "html-react-parser";
 import CustomLoader from "../CustomLoader";
 import contentService from "../../services/content.service";
 import CommentDialog from "../CommentDialog";
@@ -7,7 +8,6 @@ import LikeButton from "../LikeButton";
 import ReactStars from "react-rating-stars-component";
 
 const ArticleDetailFullWidth = () => {
-
   const params = useParams();
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(true);
@@ -79,12 +79,11 @@ const ArticleDetailFullWidth = () => {
                   post={article}
                   setPost={setArticle}
                 />
-                <div
-                  className=" pt-5"
-                  dangerouslySetInnerHTML={{
-                    __html: article?.description,
-                  }}
-                ></div>
+
+                <div className=" prose min-w-full pt-5">
+                  {" "}
+                  {parse(`${article?.description}`)}
+                </div>
               </div>
             </div>
 
