@@ -317,7 +317,7 @@ const Add = () => {
               theme="snow"
               value={editorContent}
               onChange={setEditorContent}
-              className="h-96  "
+              className="h-96 py-6  "
             />
           </div>
 
