@@ -14,9 +14,9 @@ import { Toaster } from "react-hot-toast";
 import Add from "./pages/Add";
 import TipsCard from "./components/tips/TipsCard";
 import ScrollToTop from "./components/ScrollToTop";
+import NotFound from "./pages/NotFound";
 
 function App() {
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -103,6 +103,15 @@ function App() {
           <Header />
           <Add />
           <Footer />
+        </>
+      ),
+    },
+    {
+      path: "*",
+      element: (
+        <>
+          <ScrollToTop />
+          <NotFound />
         </>
       ),
     },
