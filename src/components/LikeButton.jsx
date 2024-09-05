@@ -102,9 +102,9 @@ const LikeButton = ({
     }
   };
   return (
-    <div className={` ${customCss} cursor-pointer absolute bg-gray-50 p-2 text-center items-center  z-30 flex flex-row gap-2 rounded-md border `}>
+    <div className={` ${customCss} cursor-pointer absolute bg-gray-50 p-1 text-center items-center  z-30 flex flex-row gap-2 rounded-md border `}>
       <FaHeart
-        className={`text-3xl ${
+        className={`text-2xl ${
           checkLiked(post) ? "text-red-500" : "text-gray-400"
         }`}
         onClick={() => handleLikeClick(post._id)}

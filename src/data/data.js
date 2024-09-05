@@ -40,4 +40,9 @@ export const categories = {
     { name: "Fashion" },
     { name: "Technology" },
   ],
+  profile: [
+    { name: "Tips" },
+    { name: "Products" },
+    { name: "Articles" },
+  ],
 };

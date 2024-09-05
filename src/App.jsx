@@ -5,16 +5,17 @@ import Home from "./pages/Home";
 import Header from "./partials/Header";
 import Footer from "./partials/Footer";
 import TipsDetails from "./components/tips/TipsDetails";
-import ArticlesGrid from "./components/articles/ArticleGrid";
+import ArticlePage from "./pages/ArticlePage";
 import ArticleDetail from "./components/articles/ArticleDetails";
-import EcoFriendlyProducts from "./components/products/ProductCard";
+import ProductPage from "./pages/ProductPage";
 import ProductDetails from "./components/products/ProductDetails";
 import AuthModal from "./components/AuthModal";
 import { Toaster } from "react-hot-toast";
 import Add from "./pages/Add";
-import TipsCard from "./components/tips/TipsCard";
+import TipsPage from "./pages/TipsPage";
 import ScrollToTop from "./components/ScrollToTop";
 import NotFound from "./pages/NotFound";
+import Profile from "./pages/Profile";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,7 +23,6 @@ function App() {
       path: "/",
       element: (
         <>
-          <ScrollToTop />
           <Header />
           <Home />
           <Footer />
@@ -35,7 +35,7 @@ function App() {
         <>
           <ScrollToTop />
           <Header />
-          <EcoFriendlyProducts />
+          <ProductPage />
           <Footer />
         </>
       ),
@@ -57,7 +57,7 @@ function App() {
         <>
           <ScrollToTop />
           <Header />
-          <ArticlesGrid />
+          <ArticlePage />
           <Footer />
         </>
       ),
@@ -79,7 +79,7 @@ function App() {
         <>
           <ScrollToTop />
           <Header />
-          <TipsCard />
+          <TipsPage />
           <Footer />
         </>
       ),
@@ -102,6 +102,17 @@ function App() {
           <ScrollToTop />
           <Header />
           <Add />
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: "/profile",
+      element: (
+        <>
+          <ScrollToTop />
+          <Header />
+          <Profile />
           <Footer />
         </>
       ),

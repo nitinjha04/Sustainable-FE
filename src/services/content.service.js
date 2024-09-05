@@ -7,9 +7,13 @@ class ContentService {
   getAll = async ({ type = "", category = "" }) => {
     return apiClient.get(`/content?type=${type}&category=${category}`);
   };
+  getOwn = async ({ type = "", category = "" }) => {
+    return apiClient.get(`/content/own?type=${type}&category=${category}`);
+  };
   getParticular = async (id) => {
     return apiClient.get(`/content/${id}`);
   };
+
   like = async (data) => {
     return apiClient.post(`/content/like`, data);
   };

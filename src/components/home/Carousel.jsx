@@ -19,7 +19,7 @@ const Carousel = () => {
       {/* Image Section */}
       <div className="flex-1 flex items-center justify-center">
         <img
-          className="h-72 lg:h-[700px] select-none w-full lg:w-[70%] object-cover  object-[40%]  rounded-lg shadow-lg"
+          className="h-72 lg:h-[600px] select-none w-full lg:w-[70%] object-cover  object-[40%]  rounded-lg shadow-lg"
           src="https://images.unsplash.com/photo-1683248891907-8471945781a5"
           alt="Sustainable Living"
         />

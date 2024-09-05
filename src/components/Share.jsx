@@ -1,28 +1,33 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FacebookShareButton, FacebookIcon } from "next-share";
+import { useStateContext } from "../context/ContextProvider";
 
 const Share = ({ post }) => {
   const { shareModal, setShareModal, postDetails, setPostDetails } =
     useStateContext();
+  if (!shareModal) return null;
 
-  const modalRef = useRef(null);
+  const shareModalRef = useRef(null);
 
   const openModal = () => {
-    setIsModalOpen(true);
+    setShareModal(true);
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    setShareModal(false);
   };
 
   const handleClickOutside = (event) => {
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
+    if (
+      shareModalRef.current &&
+      !shareModalRef.current.contains(event.target)
+    ) {
       closeModal();
     }
   };
 
   useEffect(() => {
-    if (isModalOpen) {
+    if (shareModalRef) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -31,16 +36,25 @@ const Share = ({ post }) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isModalOpen]);
+  }, [shareModalRef]);
   return (
-    <div className=" flex flex-wrap  mx-auto justify-center items-center my-auto  gap-2">
-      <FacebookShareButton
-        url={"https://github.com/next-share"}
-        quote={"next-share is a social share buttons for your next React apps."}
-        hashtag={"#nextshare"}
+    <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div
+        ref={shareModalRef}
+        className="bg-custom-bg p-8 rounded-lg shadow-lg max-w-[22rem] lg:max-w-md w-fit relative"
       >
-        <FacebookIcon size={32} round />
-      </FacebookShareButton>
+        <div className=" flex flex-wrap  mx-auto justify-center items-center my-auto  gap-2">
+          <FacebookShareButton
+            url={"https://github.com/next-share"}
+            quote={
+              "next-share is a social share buttons for your next React apps."
+            }
+            hashtag={"#nextshare"}
+          >
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+        </div>
+      </div>
     </div>
   );
 };

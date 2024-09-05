@@ -1,16 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FaSearch, FaRegUser, FaPlus } from "react-icons/fa";
+import { FaRegUser, FaPlus } from "react-icons/fa";
 import { useStateContext } from "../context/ContextProvider";
-import toast from "react-hot-toast";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TokenHelper from "../helpers/Token.helper";
 
 const Header = () => {
-  const params = useParams();
-
   const navigate = useNavigate();
   const { setLoginModal, setModalType, user, setUser } = useStateContext();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
     if (!user) {
@@ -22,6 +20,7 @@ const Header = () => {
   };
 
   const dropdownRef = useRef(null);
+  const profileDropdownRef = useRef(null);
 
   const handleGoogleCallback = async () => {
     try {
@@ -45,6 +44,12 @@ const Header = () => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownOpen(false);
+      }
+      if (
+        profileDropdownRef.current &&
+        !profileDropdownRef.current.contains(event.target)
+      ) {
+        setProfileDropdownOpen(false);
       }
     };
 
@@ -103,22 +108,6 @@ const Header = () => {
                   Add Article
                 </li>
               </Link>
-              {user && (
-                <li
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                  onClick={() => {
-                    const token = TokenHelper.get();
-                    if (token) {
-                      TokenHelper.delete();
-                      setUser();
-                      navigate("/");
-                      setDropdownOpen(false);
-                    }
-                  }}
-                >
-                  Sign Out
-                </li>
-              )}
             </ul>
           </div>
         )}
@@ -129,12 +118,48 @@ const Header = () => {
         )}
         <FaRegUser
           onClick={() => {
-            if (user) return;
+            if (user) {
+              setProfileDropdownOpen(true);
+              return;
+            }
             setModalType("login");
-            setLoginModal(true); 
+            setLoginModal(true);
           }}
           className="text-xl cursor-pointer"
         />
+        {profileDropdownOpen && (
+          <div
+            ref={profileDropdownRef}
+            className="absolute right-1 top-5 mt-2 w-48 bg-white border rounded-lg shadow-lg z-10"
+          >
+            <ul className="py-2">
+              <Link to="/profile">
+                <li
+                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                  onClick={() => {
+                    setProfileDropdownOpen(false);
+                  }}
+                >
+                  Profile
+                </li>
+              </Link>
+              <li
+                className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                onClick={() => {
+                  const token = TokenHelper.get();
+                  if (token) {
+                    TokenHelper.delete();
+                    setUser();
+                    navigate("/");
+                    setDropdownOpen(false);
+                  }
+                }}
+              >
+                Sign Out
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
