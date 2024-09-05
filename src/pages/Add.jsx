@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import fileUploadService from "../services/fileUpload.service";
 import { useStateContext } from "../context/ContextProvider";
 import Tabs from "../components/Tabs";
+import CustomLoader from "../components/CustomLoader";
 
 const Add = () => {
   const navigate = useNavigate();
@@ -21,6 +22,8 @@ const Add = () => {
   const queryParams = new URLSearchParams(location.search);
   const type = queryParams.get("type");
   const postId = queryParams.get("id");
+
+  const [loading, setLoading] = useState(true);
 
   const { control, handleSubmit, setValue } = useForm();
   const [image, setImage] = useState(null);
@@ -111,7 +114,7 @@ const Add = () => {
   const handleDelete = async () => {
     try {
       const response = await contentService.delete(postId);
-      toast.success("Post Deleted")
+      toast.success("Post Deleted");
       window.history.back();
     } catch (error) {
       console.log({ error });
@@ -188,6 +191,7 @@ const Add = () => {
   useEffect(() => {
     if (postId) {
       const api = async () => {
+        setLoading(true);
         try {
           const response = await contentService.getParticular(postId);
           const result = response.data.result;
@@ -218,13 +222,17 @@ const Add = () => {
             setPros(result.pros);
             setCons(result.cons);
           }
+          setLoading(false);
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       };
 
       api();
     } else {
+      setLoading(false);
+
       setImage(null);
       setValue("title", "");
       setEditorContent("");
@@ -244,42 +252,86 @@ const Add = () => {
           Add {type?.charAt(0)?.toUpperCase() + type?.slice(1)}
         </h1>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          {/* Image Input with Dropzone */}
-          <div className="flex flex-col items-start mb-4">
-            <label
-              htmlFor="file"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Image
-            </label>
-            <div
-              {...getRootProps()}
-              className={`cursor-pointer outline-none bg-gray-100 p-2 border rounded-md w-full h-56 flex items-center justify-center ${
-                image ? "border-gray-300" : "border-gray-500"
-              }`}
-            >
-              <input {...getInputProps()} />
-              {image ? (
-                <img
-                  src={image}
-                  alt="Selected"
-                  className="w-full h-52 object-contain rounded-md"
-                />
-              ) : (
-                <div className="text-center">
-                  <FaImage className="text-gray-500 text-4xl mx-auto mb-2" />
-                  <p className="text-gray-500">
-                    Drag & drop an image, or click to select one
-                  </p>
-                </div>
-              )}
-            </div>
+        {loading ? (
+          <div className=" my-auto flex justify-center items-center h-[70vh]">
+            {" "}
+            <CustomLoader loading={loading} />
           </div>
+        ) : (
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            {/* Image Input with Dropzone */}
+            <div className="flex flex-col items-start mb-4">
+              <label
+                htmlFor="file"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Image
+              </label>
+              <div
+                {...getRootProps()}
+                className={`cursor-pointer outline-none bg-gray-100 p-2 border rounded-md w-full h-56 flex items-center justify-center ${
+                  image ? "border-gray-300" : "border-gray-500"
+                }`}
+              >
+                <input {...getInputProps()} />
+                {image ? (
+                  <img
+                    src={image}
+                    alt="Selected"
+                    className="w-full h-52 object-contain rounded-md"
+                  />
+                ) : (
+                  <div className="text-center">
+                    <FaImage className="text-gray-500 text-4xl mx-auto mb-2" />
+                    <p className="text-gray-500">
+                      Drag & drop an image, or click to select one
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
 
-          {type === "product" ? (
-            <div className=" flex flex-col lg:flex-row gap-5">
-              <div className="mb-4 flex-1">
+            {type === "product" ? (
+              <div className=" flex flex-col lg:flex-row gap-5">
+                <div className="mb-4 flex-1">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Title
+                  </label>
+                  <Controller
+                    name="title"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        type="text"
+                        {...field}
+                        className="outline-none w-full p-2 border rounded-md"
+                        placeholder="Enter the title"
+                      />
+                    )}
+                    rules={{ required: "Title is required" }}
+                  />
+                </div>
+                <div className="mb-4 flex-1">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Price
+                  </label>
+                  <Controller
+                    name="price"
+                    control={control}
+                    render={({ field }) => (
+                      <input
+                        type="number"
+                        {...field}
+                        className="outline-none w-full p-2 border rounded-md"
+                        placeholder="Enter the Price"
+                      />
+                    )}
+                    rules={{ required: "Price is required" }}
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="mb-4 ">
                 <label className="block text-sm font-medium text-gray-700">
                   Title
                 </label>
@@ -297,285 +349,250 @@ const Add = () => {
                   rules={{ required: "Title is required" }}
                 />
               </div>
-              <div className="mb-4 flex-1">
+            )}
+
+            {type === "product" && (
+              <div className="mb-4 ">
                 <label className="block text-sm font-medium text-gray-700">
-                  Price
+                  Product Link
                 </label>
                 <Controller
-                  name="price"
+                  name="productLink"
                   control={control}
                   render={({ field }) => (
                     <input
-                      type="number"
+                      type="url"
                       {...field}
                       className="outline-none w-full p-2 border rounded-md"
-                      placeholder="Enter the Price"
+                      placeholder="Enter the Product Link"
                     />
                   )}
-                  rules={{ required: "Price is required" }}
+                  rules={{ required: "Product Url is required" }}
                 />
               </div>
-            </div>
-          ) : (
-            <div className="mb-4 ">
-              <label className="block text-sm font-medium text-gray-700">
-                Title
-              </label>
-              <Controller
-                name="title"
-                control={control}
-                render={({ field }) => (
-                  <input
-                    type="text"
-                    {...field}
-                    className="outline-none w-full p-2 border rounded-md"
-                    placeholder="Enter the title"
-                  />
-                )}
-                rules={{ required: "Title is required" }}
-              />
-            </div>
-          )}
+            )}
 
-          {type === "product" && (
-            <div className="mb-4 ">
-              <label className="block text-sm font-medium text-gray-700">
-                Product Link
-              </label>
-              <Controller
-                name="productLink"
-                control={control}
-                render={({ field }) => (
-                  <input
-                    type="url"
-                    {...field}
-                    className="outline-none w-full p-2 border rounded-md"
-                    placeholder="Enter the Product Link"
-                  />
-                )}
-                rules={{ required: "Product Url is required" }}
-              />
-            </div>
-          )}
+            {/* Category buttons */}
 
-          {/* Category buttons */}
-
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Select a Category
-            </label>
-            <Tabs
-              activeTab={selectedCategory}
-              setActiveTab={setSelectedCategory}
-              type={type}
-            />
-          </div>
-
-          {/* React Quill Editor for Articles */}
-          <div className="mb-6 pb-8">
-            <label className="block text-sm font-medium text-gray-700 pb-2">
-              {type === "article" ? <p>Content</p> : <p>Description</p>}
-            </label>
-            <ReactQuill
-              theme="snow"
-              value={editorContent}
-              onChange={setEditorContent}
-              className="h-96 py-6  "
-            />
-          </div>
-
-          {/* Tip Input and List */}
-          {type === "tip" && (
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Add a Tip
+              <label className="block text-sm font-medium text-gray-700">
+                Select a Category
               </label>
-              <div className="flex">
-                <input
-                  type="text"
-                  value={tipInput}
-                  onChange={(e) => setTipInput(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      addTip();
-                    }
-                  }}
-                  className="flex-1 p-2 border rounded-md mr-2 outline-none"
-                  placeholder="Enter a tip"
-                />
-                <button
-                  type="button"
-                  onClick={addTip}
-                  className="bg-custom-btn-3 hover:bg-custom-btn-4 text-white py-2 px-4 rounded-md "
-                >
-                  Save
-                </button>
-              </div>
-
-              {/* Tips List with Drag and Drop */}
-              {tips.length > 0 && (
-                <div className="mt-4">
-                  <DragDropContext onDragEnd={handleDragEnd}>
-                    <Droppable droppableId="tipsDroppable">
-                      {(provided) => (
-                        <ul
-                          {...provided.droppableProps}
-                          ref={provided.innerRef}
-                          className="space-y-2"
-                        >
-                          {tips.map((tip, index) => (
-                            <Draggable
-                              key={tip._id || tip.id}
-                              draggableId={tip._id || tip.id}
-                              index={index}
-                            >
-                              {(provided, snapshot) => (
-                                <li
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                  className={`flex items-center justify-between p-2 border rounded-md bg-gray-50 ${
-                                    snapshot.isDragging
-                                      ? "bg-blue-100"
-                                      : "bg-gray-50"
-                                  }`}
-                                >
-                                  <span>{tip.content}</span>
-                                  <button
-                                    type="button"
-                                    onClick={() => deleteTip(tip._id || tip.id)}
-                                    className="text-red-500 hover:text-red-700"
-                                  >
-                                    <FaTrash />
-                                  </button>
-                                </li>
-                              )}
-                            </Draggable>
-                          ))}
-                          {provided.placeholder}
-                        </ul>
-                      )}
-                    </Droppable>
-                  </DragDropContext>
-                </div>
-              )}
+              <Tabs
+                activeTab={selectedCategory}
+                setActiveTab={setSelectedCategory}
+                type={type}
+              />
             </div>
-          )}
 
-          {type === "product" && (
-            <div className="flex space-x-0 lg:space-x-8 lg:flex-row flex-col">
-              {/* Pros Section */}
-              <div className=" w-full lg:w-1/2">
+            {/* React Quill Editor for Articles */}
+            <div className="mb-6 pb-8">
+              <label className="block text-sm font-medium text-gray-700 pb-2">
+                {type === "article" ? <p>Content</p> : <p>Description</p>}
+              </label>
+              <ReactQuill
+                theme="snow"
+                value={editorContent}
+                onChange={setEditorContent}
+                className="h-96 py-6  "
+              />
+            </div>
+
+            {/* Tip Input and List */}
+            {type === "tip" && (
+              <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Pros
+                  Add a Tip
                 </label>
-                <div className="flex mb-2">
+                <div className="flex">
                   <input
                     type="text"
-                    value={proInput}
-                    onChange={(e) => setProInput(e.target.value)}
+                    value={tipInput}
+                    onChange={(e) => setTipInput(e.target.value)}
                     onKeyDown={(e) => {
                       if (e.key === "Enter") {
                         e.preventDefault();
-                        addPro();
+                        addTip();
                       }
                     }}
                     className="flex-1 p-2 border rounded-md mr-2 outline-none"
-                    placeholder="Enter a pro"
+                    placeholder="Enter a tip"
                   />
                   <button
                     type="button"
-                    onClick={addPro}
+                    onClick={addTip}
                     className="bg-custom-btn-3 hover:bg-custom-btn-4 text-white py-2 px-4 rounded-md "
                   >
-                    Add
+                    Save
                   </button>
                 </div>
-                <ul className="list-disc ml-5">
-                  {pros.map((pro, index) => (
-                    <div key={index} className=" flex justify-between">
-                      <li className="mb-1 w-full">{pro}</li>{" "}
-                      <button
-                        type="button"
-                        onClick={() => deletePro(index)}
-                        className="text-red-800 ml-2 "
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  ))}
-                </ul>
-              </div>
 
-              {/* Cons Section */}
-              <div className=" w-full lg:w-1/2">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Cons
-                </label>
-                <div className="flex mb-2 gap-3">
-                  <input
-                    type="text"
-                    value={conInput}
-                    onChange={(e) => setConInput(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        e.preventDefault();
-                        addCon();
-                      }
-                    }}
-                    className="flex-1 p-2 border rounded-md mr-0 lg:mr-2 outline-none"
-                    placeholder="Enter a con"
-                  />
-                  <button
-                    type="button"
-                    onClick={addCon}
-                    className="bg-custom-btn-3 hover:bg-custom-btn-4 text-white py-2 px-4 rounded-md"
-                  >
-                    Add
-                  </button>
-                </div>
-                <ul className="list-disc ml-5">
-                  {cons.map((con, index) => (
-                    <div key={index} className=" flex justify-between">
-                      <li className="mb-1">{con}</li>
-                      <button
-                        type="button"
-                        onClick={() => deleteCon(index)}
-                        className="text-red-800 ml-2"
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  ))}
-                </ul>
+                {/* Tips List with Drag and Drop */}
+                {tips.length > 0 && (
+                  <div className="mt-4">
+                    <DragDropContext onDragEnd={handleDragEnd}>
+                      <Droppable droppableId="tipsDroppable">
+                        {(provided) => (
+                          <ul
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                            className="space-y-2"
+                          >
+                            {tips.map((tip, index) => (
+                              <Draggable
+                                key={tip._id || tip.id}
+                                draggableId={tip._id || tip.id}
+                                index={index}
+                              >
+                                {(provided, snapshot) => (
+                                  <li
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    className={`flex items-center justify-between p-2 border rounded-md bg-gray-50 ${
+                                      snapshot.isDragging
+                                        ? "bg-blue-100"
+                                        : "bg-gray-50"
+                                    }`}
+                                  >
+                                    <span>{tip.content}</span>
+                                    <button
+                                      type="button"
+                                      onClick={() =>
+                                        deleteTip(tip._id || tip.id)
+                                      }
+                                      className="text-red-500 hover:text-red-700"
+                                    >
+                                      <FaTrash />
+                                    </button>
+                                  </li>
+                                )}
+                              </Draggable>
+                            ))}
+                            {provided.placeholder}
+                          </ul>
+                        )}
+                      </Droppable>
+                    </DragDropContext>
+                  </div>
+                )}
               </div>
+            )}
+
+            {type === "product" && (
+              <div className="flex space-x-0 lg:space-x-8 lg:flex-row flex-col">
+                {/* Pros Section */}
+                <div className=" w-full lg:w-1/2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Pros
+                  </label>
+                  <div className="flex mb-2">
+                    <input
+                      type="text"
+                      value={proInput}
+                      onChange={(e) => setProInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          addPro();
+                        }
+                      }}
+                      className="flex-1 p-2 border rounded-md mr-2 outline-none"
+                      placeholder="Enter a pro"
+                    />
+                    <button
+                      type="button"
+                      onClick={addPro}
+                      className="bg-custom-btn-3 hover:bg-custom-btn-4 text-white py-2 px-4 rounded-md "
+                    >
+                      Add
+                    </button>
+                  </div>
+                  <ul className="list-disc ml-5">
+                    {pros.map((pro, index) => (
+                      <div key={index} className=" flex justify-between">
+                        <li className="mb-1 w-full">{pro}</li>{" "}
+                        <button
+                          type="button"
+                          onClick={() => deletePro(index)}
+                          className="text-red-800 ml-2 "
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Cons Section */}
+                <div className=" w-full lg:w-1/2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Cons
+                  </label>
+                  <div className="flex mb-2 gap-3">
+                    <input
+                      type="text"
+                      value={conInput}
+                      onChange={(e) => setConInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          addCon();
+                        }
+                      }}
+                      className="flex-1 p-2 border rounded-md mr-0 lg:mr-2 outline-none"
+                      placeholder="Enter a con"
+                    />
+                    <button
+                      type="button"
+                      onClick={addCon}
+                      className="bg-custom-btn-3 hover:bg-custom-btn-4 text-white py-2 px-4 rounded-md"
+                    >
+                      Add
+                    </button>
+                  </div>
+                  <ul className="list-disc ml-5">
+                    {cons.map((con, index) => (
+                      <div key={index} className=" flex justify-between">
+                        <li className="mb-1">{con}</li>
+                        <button
+                          type="button"
+                          onClick={() => deleteCon(index)}
+                          className="text-red-800 ml-2"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
+
+            {/* Buttons */}
+            <div className="flex justify-end space-x-4 pt-8">
+              <button
+                type="submit"
+                className="bg-custom-btn-3 hover:bg-custom-btn-4 text-white py-2 px-4 rounded-md "
+              >
+                Submit
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  if (postId) {
+                    handleDelete();
+                  } else {
+                    window.history.back();
+                  }
+                }}
+                className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
+              >
+                {postId ? <p>Delete</p> : <p>Cancel</p>}
+              </button>
             </div>
-          )}
-
-          {/* Buttons */}
-          <div className="flex justify-end space-x-4 pt-8">
-            <button
-              type="submit"
-              className="bg-custom-btn-3 hover:bg-custom-btn-4 text-white py-2 px-4 rounded-md "
-            >
-              Submit
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                if (postId) {
-                  handleDelete();
-                } else {
-                  window.history.back();
-                }
-              }}
-              className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
-            >
-              {postId ? <p>Delete</p> : <p>Cancel</p>}
-            </button>
-          </div>
-        </form>
+          </form>
+        )}
       </div>
     </div>
   );
