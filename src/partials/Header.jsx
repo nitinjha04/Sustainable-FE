@@ -140,7 +140,7 @@ const Header = () => {
                     setProfileDropdownOpen(false);
                   }}
                 >
-                  Profile
+                  Your Posts
                 </li>
               </Link>
               <li
