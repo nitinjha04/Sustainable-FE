@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactStars from "react-rating-stars-component";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 import { useParams } from "react-router-dom";
 import contentService from "../../services/content.service";
@@ -54,7 +54,7 @@ const ProductDetails = () => {
               />
               <img
                 loading="lazy"
-                className=" select-none w-full h-96 object-contain rounded-lg bg-white"
+                className=" select-none w-full h-96 object-contain rounded-lg bg-custom-bg-2"
                 src={product?.thumbnail}
                 alt={product?.title}
               />
@@ -103,9 +103,9 @@ const ProductDetails = () => {
             <p className="text-gray-700">
               {" "}
               <div className=" prose min-w-full pt-5">
-                  {" "}
-                  {parse(`${product?.description}`)}
-                </div>
+                {" "}
+                {parse(`${product?.description}`)}
+              </div>
             </p>
           </div>
 
@@ -147,8 +147,9 @@ const ProductDetails = () => {
 
           {/* Comments Section */}
           <CommentDialog
-            customCss="p-8 bg-custom-bg"
-            subCustomCss=" bg-white "
+            customCss="p-8  "
+            subCustomCss=" border    shadow-lg bg-custom-input "
+            inputCss="bg-custom-bg"
             post={product}
             setPost={setProduct}
           />

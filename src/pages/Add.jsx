@@ -247,7 +247,7 @@ const Add = () => {
 
   return (
     <div className=" lg:py-6 py-0  ">
-      <div className="max-w-7xl border border-solid border-gray-200 mx-auto p-8  bg-white shadow-lg rounded-lg">
+      <div className="max-w-7xl border border-solid border-gray-200 mx-auto p-8  bg-custom-bg-2 shadow-lg rounded-lg">
         <h1 className="text-2xl font-bold mb-6 text-center">
           Add {type?.charAt(0)?.toUpperCase() + type?.slice(1)}
         </h1>
@@ -269,7 +269,7 @@ const Add = () => {
               </label>
               <div
                 {...getRootProps()}
-                className={`cursor-pointer outline-none bg-gray-100 p-2 border rounded-md w-full h-56 flex items-center justify-center ${
+                className={`cursor-pointer outline-none bg-custom-bg p-2 border rounded-md w-full h-56 flex items-center justify-center ${
                   image ? "border-gray-300" : "border-gray-500"
                 }`}
               >
@@ -304,7 +304,7 @@ const Add = () => {
                       <input
                         type="text"
                         {...field}
-                        className="outline-none w-full p-2 border rounded-md"
+                        className="outline-none bg-custom-bg w-full p-2 border rounded-md"
                         placeholder="Enter the title"
                       />
                     )}
@@ -322,7 +322,7 @@ const Add = () => {
                       <input
                         type="number"
                         {...field}
-                        className="outline-none w-full p-2 border rounded-md"
+                        className="outline-none bg-custom-bg w-full p-2 border rounded-md"
                         placeholder="Enter the Price"
                       />
                     )}
@@ -342,7 +342,7 @@ const Add = () => {
                     <input
                       type="text"
                       {...field}
-                      className="outline-none w-full p-2 border rounded-md"
+                      className="outline-none bg-custom-bg w-full p-2 border rounded-md"
                       placeholder="Enter the title"
                     />
                   )}
@@ -363,7 +363,7 @@ const Add = () => {
                     <input
                       type="url"
                       {...field}
-                      className="outline-none w-full p-2 border rounded-md"
+                      className="outline-none bg-custom-bg w-full p-2 border rounded-md"
                       placeholder="Enter the Product Link"
                     />
                   )}
@@ -394,7 +394,7 @@ const Add = () => {
                 theme="snow"
                 value={editorContent}
                 onChange={setEditorContent}
-                className="h-96 py-6  "
+                className="h-96  bg-custom-bg "
               />
             </div>
 
@@ -415,7 +415,7 @@ const Add = () => {
                         addTip();
                       }
                     }}
-                    className="flex-1 p-2 border rounded-md mr-2 outline-none"
+                    className="flex-1 p-2 bg-custom-bg border rounded-md mr-2 outline-none"
                     placeholder="Enter a tip"
                   />
                   <button
@@ -449,10 +449,10 @@ const Add = () => {
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
-                                    className={`flex items-center justify-between p-2 border rounded-md bg-gray-50 ${
+                                    className={`flex items-center justify-between p-2 border rounded-md ${
                                       snapshot.isDragging
                                         ? "bg-blue-100"
-                                        : "bg-gray-50"
+                                        : "bg-custom-bg"
                                     }`}
                                   >
                                     <span>{tip.content}</span>
@@ -497,7 +497,7 @@ const Add = () => {
                           addPro();
                         }
                       }}
-                      className="flex-1 p-2 border rounded-md mr-2 outline-none"
+                      className="flex-1 p-2 border bg-custom-bg rounded-md mr-2 outline-none"
                       placeholder="Enter a pro"
                     />
                     <button
@@ -540,7 +540,7 @@ const Add = () => {
                           addCon();
                         }
                       }}
-                      className="flex-1 p-2 border rounded-md mr-0 lg:mr-2 outline-none"
+                      className="flex-1 p-2 border bg-custom-bg rounded-md mr-0 lg:mr-2 outline-none"
                       placeholder="Enter a con"
                     />
                     <button

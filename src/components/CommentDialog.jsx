@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactStars from "react-rating-stars-component";
-import { toast } from "react-hot-toast"; 
+import { toast } from "react-hot-toast";
 import { useStateContext } from "../context/ContextProvider";
 import contentService from "../services/content.service";
 
@@ -11,6 +11,7 @@ const CommentDialog = ({
   setPost,
   customCss = "p-8 bg-white",
   subCustomCss = "s",
+  inputCss = "bg-custom-input",
 }) => {
   const { setLoginModal, setModalType, user } = useStateContext();
 
@@ -79,7 +80,7 @@ const CommentDialog = ({
   return (
     <div className={` ${customCss} flex flex-col gap-6 max-w-7xl mx-auto `}>
       <div
-        className={` ${subCustomCss}   border border-gray-100 p-6 rounded-lg`}
+        className={` ${subCustomCss}   border  p-6 rounded-lg`}
       >
         <h2 className="text-2xl font-semibold text-gray-900 mb-4">
           Add Your Review
@@ -98,9 +99,9 @@ const CommentDialog = ({
           <div className="mb-4">
             <label className="block text-gray-700 mb-2">Your Review</label>
             <textarea
-              className=" resize-none w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-btn-4"
+              className={`${inputCss} resize-none w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-btn-4`}
               rows="5"
-              placeholder="What did you like or dislike about this product?"
+              placeholder="What did you like or dislike about this ?"
               value={userReview}
               onChange={(e) => setUserReview(e.target.value)}
             ></textarea>
@@ -121,7 +122,7 @@ const CommentDialog = ({
         </h2>
         {post && post?.comments && post.comments.length > 0 ? (
           post.comments.map((review, index) => (
-            <div key={index} className="mb-4 border-b pb-4">
+            <div key={index} className="mb-4 border-b border-b-custom-btn pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <span className=" bg-white rounded-full border p-1 text-lg">

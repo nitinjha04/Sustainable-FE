@@ -39,7 +39,7 @@ const TipsDetails = () => {
           <CustomLoader loading={loading} />
         </div>
       ) : (
-        <div className="max-w-5xl mx-auto p-8 my-5 bg-white border  rounded-lg">
+        <div className="max-w-5xl mx-auto p-8 my-5 bg-custom-bg-2 border  rounded-lg">
           {/* Tip Image */}
           <div className="w-full h-96 mb-8 overflow-hidden rounded-lg">
             <img
@@ -101,7 +101,8 @@ const TipsDetails = () => {
 
           <CommentDialog
             customCss=""
-            subCustomCss="  shadow-lg bg-gray-100 "
+            subCustomCss="  shadow-lg bg-custom-bg "
+            inputCss="bg-custom-bg-2"
             post={tip}
             setPost={setTip}
           />

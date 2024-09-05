@@ -71,7 +71,7 @@ const ArticleDetailFullWidth = () => {
 
           {/* Article Content */}
           <div className="max-w-7xl mx-auto p-2 py-4 lg:p-8">
-            <div className="bg-white p-8 rounded-lg shadow-lg mb-8">
+            <div className="bg-custom-bg-2 p-8 rounded-lg shadow-lg mb-8">
               <div className=" relative text-gray-800 text-lg md:text-xl leading-relaxed">
                 <LikeButton
                   customCss=" -right-6  -top-6"
@@ -90,7 +90,8 @@ const ArticleDetailFullWidth = () => {
             {article && (
               <CommentDialog
                 customCss=""
-                subCustomCss="  shadow-lg bg-white "
+                subCustomCss="  shadow-lg bg-custom-bg-2 "
+                inputCss="  bg-custom-bg "
                 post={article}
                 setPost={setArticle}
               />

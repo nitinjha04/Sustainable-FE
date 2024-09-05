@@ -13,7 +13,7 @@ const Services = () => {
           <Link
             to={serv.link}
             key={index}
-            className="flex flex-col items-center gap-4 transition-transform transform hover:scale-105 duration-300"
+            className="flex  rounded-lg flex-col items-center gap-4 transition-transform transform hover:scale-105 duration-300"
           >
             <img
               className="w-11/12 h-60  rounded-lg shadow-lg object-cover"

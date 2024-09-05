@@ -6,7 +6,7 @@ import { MdEdit } from "react-icons/md";
 
 const TipsCard = ({ tip, setTips }) => {
   return (
-    <div className=" min-h-full relative border rounded-lg py-4 px-4 cursor-pointer flex flex-col items-center text-center bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
+    <div className=" min-h-full relative border rounded-lg py-4 px-4 cursor-pointer flex flex-col items-center text-center bg-custom-bg-2 shadow-md hover:shadow-lg transition-shadow duration-300">
       <LikeButton post={tip} setPost={setTips} />
 
       {/* Rating Badge */}

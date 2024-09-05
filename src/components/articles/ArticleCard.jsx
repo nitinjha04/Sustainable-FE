@@ -6,7 +6,7 @@ import { MdEdit } from "react-icons/md";
 
 const ArticleCard = ({ article, setArticles }) => {
   return (
-    <div className=" min-h-full relative bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+    <div className=" min-h-full relative bg-custom-bg-2 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
       <LikeButton post={article} setPost={setArticles} />
        {/* Rating Badge */}
        <div className=" z-30 absolute top-2 right-2 flex flex-col gap-1">

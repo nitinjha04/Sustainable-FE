@@ -9,6 +9,10 @@
   font-style: normal;
 }
 
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
+  @apply bg-custom-bg;
+}
+
 body {
   font-family: "YourCustomFont", sans-serif;
   background-color: #f6f3ed;

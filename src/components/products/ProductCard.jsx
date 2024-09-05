@@ -7,7 +7,7 @@ import { MdEdit } from "react-icons/md";
 
 const ProductCard = ({ product, setProducts }) => {
   return (
-    <div className=" min-h-full bg-white z-10 relative p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <div className=" min-h-full bg-custom-bg-2 z-10 relative p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
       <LikeButton post={product} setPost={setProducts} />
       <div className=" z-30 absolute top-2 right-2 flex flex-col gap-1">
         <div className=" bg-[#ffd700] cursor-default text-white text-xs lg:text-sm font-bold py-1 px-2 rounded-lg">
