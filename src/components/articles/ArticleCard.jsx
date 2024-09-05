@@ -2,16 +2,25 @@ import React from "react";
 import { truncateText } from "../../data/func";
 import LikeButton from "../LikeButton";
 import { Link } from "react-router-dom";
+import { MdEdit } from "react-icons/md";
 
 const ArticleCard = ({ article, setArticles }) => {
   return (
-    <div className=" relative bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+    <div className=" min-h-full relative bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
       <LikeButton post={article} setPost={setArticles} />
-      {/* Rating Badge */}
-      <div className="z-30 absolute top-2 right-2 bg-[#ffd700] text-white text-xs lg:text-sm font-bold py-1 px-2 rounded-lg">
-        {article.rating || 0} ★
+       {/* Rating Badge */}
+       <div className=" z-30 absolute top-2 right-2 flex flex-col gap-1">
+        <div className=" bg-[#ffd700] cursor-default text-white text-xs lg:text-sm font-bold py-1 px-2 rounded-lg">
+          {article.rating || 0} ★
+        </div>
+        <Link
+          to={`/add?type=article&id=${article._id}`}
+          className="  flex justify-center cursor-pointer bg-gray-100 border text-black text-xs lg:text-sm font-bold py-1 rounded-lg"
+        >
+          {/* {tip.rating || 0} ★ */}
+          <MdEdit className=" text-2xl items-center text-center flex justify-center self-center" />
+        </Link>
       </div>
-
       <Link to={`/articles/${article._id}`}>
         <img
           className="w-full h-48 object-cover"

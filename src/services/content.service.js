@@ -23,6 +23,9 @@ class ContentService {
   update = async (id, data) => {
     return apiClient.put(`/content/${id}`, data);
   };
+  delete = async (id, data) => {
+    return apiClient.delete(`/content/${id}`);
+  };
 }
 
 export default new ContentService();

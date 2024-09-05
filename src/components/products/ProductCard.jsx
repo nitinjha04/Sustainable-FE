@@ -3,13 +3,23 @@ import { Link } from "react-router-dom";
 import LikeButton from "../LikeButton";
 import { LiaComments } from "react-icons/lia";
 import { truncateText } from "../../data/func";
+import { MdEdit } from "react-icons/md";
 
 const ProductCard = ({ product, setProducts }) => {
   return (
-    <div className="bg-white z-10 relative p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <div className=" min-h-full bg-white z-10 relative p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
       <LikeButton post={product} setPost={setProducts} />
-      <div className="z-30 absolute top-2 right-2 bg-[#ffd700] text-white text-xs lg:text-sm font-bold py-1 px-2 rounded-lg">
-        {product?.rating} ★
+      <div className=" z-30 absolute top-2 right-2 flex flex-col gap-1">
+        <div className=" bg-[#ffd700] cursor-default text-white text-xs lg:text-sm font-bold py-1 px-2 rounded-lg">
+          {product.rating || 0} ★
+        </div>
+        <Link
+          to={`/add?type=product&id=${product._id}`}
+          className="  flex justify-center cursor-pointer bg-gray-100 border text-black text-xs lg:text-sm font-bold py-1 rounded-lg"
+        >
+          {/* {tip.rating || 0} ★ */}
+          <MdEdit className=" text-2xl items-center text-center flex justify-center self-center" />
+        </Link>
       </div>
       <Link to={`/products/${product._id}`} className=" ">
         <img

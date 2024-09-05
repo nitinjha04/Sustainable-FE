@@ -11,10 +11,16 @@ import contentService from "../services/content.service";
 import toast from "react-hot-toast";
 import fileUploadService from "../services/fileUpload.service";
 import { useStateContext } from "../context/ContextProvider";
+import Tabs from "../components/Tabs";
 
 const Add = () => {
   const navigate = useNavigate();
   const { user } = useStateContext();
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const type = queryParams.get("type");
+  const postId = queryParams.get("id");
 
   const { control, handleSubmit, setValue } = useForm();
   const [image, setImage] = useState(null);
@@ -26,7 +32,9 @@ const Add = () => {
   const [tips, setTips] = useState([]);
 
   // State for categories
-  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedCategory, setSelectedCategory] = useState(
+    categories[type][0].name
+  );
 
   // state for products
 
@@ -35,12 +43,8 @@ const Add = () => {
   const [proInput, setProInput] = useState("");
   const [conInput, setConInput] = useState("");
 
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const type = queryParams.get("type");
-
   const onSubmit = async (data) => {
-    if (!editorContent || !file || !selectedCategory) {
+    if (!editorContent || !image || !selectedCategory) {
       toast.error("Please Fill All Details");
     }
 
@@ -70,16 +74,28 @@ const Add = () => {
 
     try {
       const loadingToastId = toast.loading("Loading...");
-      const imageUpload = await fileUploadService.upload(file);
-      if (imageUpload?.data?.result?.url) {
-        data.thumbnail = imageUpload.data.result.url;
+      if (file) {
+        const imageUpload = await fileUploadService.upload(file);
+        if (imageUpload?.data?.result?.url) {
+          data.thumbnail = imageUpload.data.result.url;
+        }
       }
-      const response = await contentService.create({
-        ...data,
-        type: type.toUpperCase(),
-        authorId: user._id,
-      });
-      console.log({ response });
+
+      let response;
+      if (postId) {
+        response = await contentService.update(postId, {
+          ...data,
+        });
+
+        console.log({ response });
+      } else {
+        response = await contentService.create({
+          ...data,
+          type: type.toUpperCase(),
+          authorId: user._id,
+        });
+        console.log({ response });
+      }
       toast.dismiss(loadingToastId);
       toast.success(
         `${type?.charAt(0)?.toUpperCase() + type?.slice(1)} Uploaded`
@@ -88,6 +104,16 @@ const Add = () => {
     } catch (error) {
       toast.dismiss(loadingToastId);
       toast.error(error.response.data.message);
+      console.log({ error });
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      const response = await contentService.delete(postId);
+      toast.success("Post Deleted")
+      window.history.back();
+    } catch (error) {
       console.log({ error });
     }
   };
@@ -152,31 +178,64 @@ const Add = () => {
     setTips(reorderedTips);
   };
 
-  const renderCategoryButtons = () => {
-    const categoryList = categories[type] || [];
-
-    return categoryList.map((category) => (
-      <button
-        key={category.name}
-        type="button"
-        onClick={() => setSelectedCategory(category.name)}
-        className={`py-2 px-4 rounded-md ${
-          selectedCategory === category.name
-            ? "bg-green-500 text-white"
-            : "bg-gray-200 text-gray-700"
-        }`}
-      >
-        {category.name}
-      </button>
-    ));
-  };
-
   useEffect(() => {
     if (!user) {
       toast.error("Please login first");
       navigate("/");
     }
   }, [user]);
+
+  useEffect(() => {
+    if (postId) {
+      const api = async () => {
+        try {
+          const response = await contentService.getParticular(postId);
+          const result = response.data.result;
+          setValue("title", result.title);
+
+          setImage(result.thumbnail);
+          setEditorContent(result.description);
+
+          const normalizedResultCategory = result.category
+            .toLowerCase()
+            .replace(/\s+/g, ""); // Convert to lowercase and remove spaces
+
+          const matchingCategory = categories[type].find(
+            (cat) =>
+              cat.name.toLowerCase().replace(/\s+/g, "") ===
+              normalizedResultCategory
+          );
+
+          setSelectedCategory(matchingCategory.name); // Set the matching category name
+
+          if (type === "tip") {
+            setTips(result.tips);
+          }
+
+          if (type === "product") {
+            setValue("price", result.price);
+            setValue("productLink", result.productLink);
+            setPros(result.pros);
+            setCons(result.cons);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      api();
+    } else {
+      setImage(null);
+      setValue("title", "");
+      setEditorContent("");
+      setSelectedCategory(categories[type][0].name);
+      setTips([]);
+      setValue("price", 0);
+      setValue("productLink", "");
+      setPros([]);
+      setCons([]);
+    }
+  }, [postId]);
 
   return (
     <div className=" lg:py-6 py-0  ">
@@ -305,7 +364,11 @@ const Add = () => {
             <label className="block text-sm font-medium text-gray-700">
               Select a Category
             </label>
-            <div className="flex flex-wrap gap-2 mt-2">{renderCategoryButtons()}</div>
+            <Tabs
+              activeTab={selectedCategory}
+              setActiveTab={setSelectedCategory}
+              type={type}
+            />
           </div>
 
           {/* React Quill Editor for Articles */}
@@ -363,8 +426,8 @@ const Add = () => {
                         >
                           {tips.map((tip, index) => (
                             <Draggable
-                              key={tip.id}
-                              draggableId={tip.id}
+                              key={tip._id || tip.id}
+                              draggableId={tip._id || tip.id}
                               index={index}
                             >
                               {(provided, snapshot) => (
@@ -381,7 +444,7 @@ const Add = () => {
                                   <span>{tip.content}</span>
                                   <button
                                     type="button"
-                                    onClick={() => deleteTip(tip.id)}
+                                    onClick={() => deleteTip(tip._id || tip.id)}
                                     className="text-red-500 hover:text-red-700"
                                   >
                                     <FaTrash />
@@ -431,10 +494,8 @@ const Add = () => {
                 </div>
                 <ul className="list-disc ml-5">
                   {pros.map((pro, index) => (
-                    <div className=" flex justify-between">
-                      <li key={index} className="mb-1 w-full">
-                        {pro}
-                      </li>{" "}
+                    <div key={index} className=" flex justify-between">
+                      <li className="mb-1 w-full">{pro}</li>{" "}
                       <button
                         type="button"
                         onClick={() => deletePro(index)}
@@ -469,21 +530,19 @@ const Add = () => {
                   <button
                     type="button"
                     onClick={addCon}
-                    className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600"
+                    className="bg-custom-btn-3 hover:bg-custom-btn-4 text-white py-2 px-4 rounded-md"
                   >
                     Add
                   </button>
                 </div>
                 <ul className="list-disc ml-5">
                   {cons.map((con, index) => (
-                    <div className=" flex justify-between">
-                      <li key={index} className="mb-1">
-                        {con}
-                      </li>
+                    <div key={index} className=" flex justify-between">
+                      <li className="mb-1">{con}</li>
                       <button
                         type="button"
                         onClick={() => deleteCon(index)}
-                        className="text-red-500 ml-2"
+                        className="text-red-800 ml-2"
                       >
                         Remove
                       </button>
@@ -504,10 +563,16 @@ const Add = () => {
             </button>
             <button
               type="button"
-              onClick={() => window.history.back()}
+              onClick={() => {
+                if (postId) {
+                  handleDelete();
+                } else {
+                  window.history.back();
+                }
+              }}
               className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
             >
-              Cancel
+              {postId ? <p>Delete</p> : <p>Cancel</p>}
             </button>
           </div>
         </form>

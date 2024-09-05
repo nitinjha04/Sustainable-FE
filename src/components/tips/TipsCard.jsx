@@ -2,17 +2,25 @@ import React from "react";
 import LikeButton from "../LikeButton";
 import { Link } from "react-router-dom";
 import { truncateText } from "../../data/func";
+import { MdEdit } from "react-icons/md";
 
 const TipsCard = ({ tip, setTips }) => {
   return (
-    <div
-      className="relative border rounded-lg py-4 px-4 cursor-pointer flex flex-col items-center text-center bg-white shadow-md hover:shadow-lg transition-shadow duration-300"
-    >
+    <div className=" min-h-full relative border rounded-lg py-4 px-4 cursor-pointer flex flex-col items-center text-center bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
       <LikeButton post={tip} setPost={setTips} />
 
       {/* Rating Badge */}
-      <div className="z-30 absolute top-2 right-2 bg-[#ffd700] text-white text-xs lg:text-sm font-bold py-1 px-2 rounded-lg">
-        {tip.rating || 0} ★
+      <div className=" z-30 absolute top-2 right-2 flex flex-col gap-1">
+        <div className=" bg-[#ffd700] cursor-default text-white text-xs lg:text-sm font-bold py-1 px-2 rounded-lg">
+          {tip.rating || 0} ★
+        </div>
+        <Link
+          to={`/add?type=tip&id=${tip._id}`}
+          className="  flex justify-center cursor-pointer bg-gray-100 border text-black text-xs lg:text-sm font-bold py-1 rounded-lg"
+        >
+          {/* {tip.rating || 0} ★ */}
+          <MdEdit className=" text-2xl items-center text-center flex justify-center self-center" />
+        </Link>
       </div>
       <Link to={`/tips/${tip._id}`} className="flex flex-col">
         <img
