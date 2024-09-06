@@ -19,7 +19,15 @@ const Share = () => {
   const { shareModal, setShareModal, postDetails, setPostDetails } =
     useStateContext();
 
-  const currentUrl = `${window.location.href}/${postDetails?._id}`;
+  const currentUrl = () => {
+    const baseUrl = window.location.href;
+    const hasIdPattern = /(\/articles\/|\/tips\/|\/products\/)[^/]+$/;
+    if (hasIdPattern.test(baseUrl)) {
+      return baseUrl;
+    } else {
+      return `${baseUrl}/${postDetails?._id}`;
+    }
+  };
   const shareModalRef = useRef(null);
   const [copied, setCopied] = useState(false);
 
@@ -108,14 +116,14 @@ const Share = () => {
             <input
               readOnly
               className=" outline-none rounded-lg p-2 w-11/12"
-              value={currentUrl}
+              value={currentUrl()}
               type="text"
             />
             <div className="relative my-auto flex pr-2 justify-center mx-auto  group">
               <FaCopy
                 onClick={() => {
                   setCopied(true);
-                  navigator.clipboard.writeText(currentUrl);
+                  navigator.clipboard.writeText(currentUrl());
                   setTimeout(() => setCopied(false), 5000);
                 }}
                 className="bg-white text-xl cursor-pointer"
