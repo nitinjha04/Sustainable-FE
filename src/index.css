@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "YourCustomFont";
+  font-family: "ClashDisplay";
   src: url("./assets/fonts/ClashDisplay-Variable.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: "YourCustomFont", sans-serif;
+  font-family: "ClashDisplay", sans-serif;
   background-color: #f6f3ed;
 }
 
