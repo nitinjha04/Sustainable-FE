@@ -36,7 +36,7 @@ const Add = () => {
 
   // State for categories
   const [selectedCategory, setSelectedCategory] = useState(
-    categories[type][0].name
+    categories[type][0].name||""
   );
 
   // state for products
@@ -49,6 +49,7 @@ const Add = () => {
   const onSubmit = async (data) => {
     if (!editorContent || !image || !selectedCategory) {
       toast.error("Please Fill All Details");
+      return;
     }
 
     data.description = editorContent;
@@ -75,8 +76,8 @@ const Add = () => {
 
     console.log({ data });
 
+    const loadingToastId = toast.loading("Loading...");
     try {
-      const loadingToastId = toast.loading("Loading...");
       if (file) {
         const imageUpload = await fileUploadService.upload(file);
         if (imageUpload?.data?.result?.url) {
@@ -572,7 +573,6 @@ const Add = () => {
             {/* Buttons */}
             <div className="flex justify-end space-x-4 pt-8">
               <button
-                type="submit"
                 className="bg-custom-btn-3 hover:bg-custom-btn-4 text-white py-2 px-4 rounded-md "
               >
                 Submit

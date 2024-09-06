@@ -16,6 +16,7 @@ import TipsPage from "./pages/TipsPage";
 import ScrollToTop from "./components/ScrollToTop";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
+import Share from "./components/Share";
 
 function App() {
   const router = createBrowserRouter([
@@ -134,7 +135,9 @@ function App() {
         <RouterProvider router={router} />
 
         <AuthModal />
+        <Share />
         <Toaster />
+
       </div>
     </>
   );

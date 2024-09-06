@@ -6,6 +6,7 @@ const Tabs = ({ type,activeTab,setActiveTab }) => {
     <div className="flex flex-wrap  gap-4 mb-8">
       {categories[type].map((category) => (
         <button
+        type="button"
           key={category.name}
           className={` text-sm lg:text-base py-2 px-4 rounded-t-lg focus:outline-none ${
             activeTab === category.name

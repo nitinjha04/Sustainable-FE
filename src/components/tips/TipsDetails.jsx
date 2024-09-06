@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import contentService from "../../services/content.service";
 import CustomLoader from "../CustomLoader";
 import LikeButton from "../LikeButton";
+import { ShareButton } from "../Share";
 import CommentDialog from "../CommentDialog";
 import parse from "html-react-parser";
 
@@ -50,12 +51,15 @@ const TipsDetails = () => {
           </div>
 
           <div className=" py-4 relative flex justify-between w-full">
-            <LikeButton
-              customCss=" top-0 left-2"
-              particular={true}
-              post={tip}
-              setPost={setTip}
-            />
+            <div className=" flex gap-2">
+              <LikeButton
+                customCss=" top-0 left-2"
+                particular={true}
+                post={tip}
+                setPost={setTip}
+              />
+              <ShareButton post={tip} position=" top-0 left-12" />
+            </div>
             <div></div>
             <ReactStars
               count={5}

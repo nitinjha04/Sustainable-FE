@@ -9,6 +9,7 @@ import CommentDialog from "../CommentDialog";
 import CustomLoader from "../CustomLoader";
 
 import { CgArrowTopLeftO } from "react-icons/cg";
+import { ShareButton } from "../Share";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -52,6 +53,8 @@ const ProductDetails = () => {
                 post={product}
                 setPost={setProduct}
               />
+              <ShareButton post={product} />
+
               <img
                 loading="lazy"
                 className=" select-none w-full h-96 object-contain rounded-lg bg-custom-bg-2"

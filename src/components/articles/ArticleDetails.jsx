@@ -6,6 +6,7 @@ import contentService from "../../services/content.service";
 import CommentDialog from "../CommentDialog";
 import LikeButton from "../LikeButton";
 import ReactStars from "react-rating-stars-component";
+import { ShareButton } from "../Share";
 
 const ArticleDetailFullWidth = () => {
   const params = useParams();
@@ -73,6 +74,8 @@ const ArticleDetailFullWidth = () => {
           <div className="max-w-7xl mx-auto p-2 py-4 lg:p-8">
             <div className="bg-custom-bg-2 p-8 rounded-lg shadow-lg mb-8">
               <div className=" relative text-gray-800 text-lg md:text-xl leading-relaxed">
+                <ShareButton post={article} position=" right-4  -top-6" />
+
                 <LikeButton
                   customCss=" -right-6  -top-6"
                   particular={true}

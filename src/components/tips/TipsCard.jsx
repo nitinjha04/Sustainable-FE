@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import { truncateText } from "../../data/func";
 import { MdEdit } from "react-icons/md";
 
+import { ShareButton } from "../Share";
+
 const TipsCard = ({ tip, setTips }) => {
   return (
     <div className=" min-h-full relative border rounded-lg py-4 px-4 cursor-pointer flex flex-col items-center text-center bg-custom-bg-2 shadow-md hover:shadow-lg transition-shadow duration-300">
       <LikeButton post={tip} setPost={setTips} />
+      <ShareButton post={tip} />
 
       {/* Rating Badge */}
       <div className=" z-30 absolute top-2 right-2 flex flex-col gap-1">
@@ -31,7 +34,7 @@ const TipsCard = ({ tip, setTips }) => {
         <h1 className="text-lg lg:text-2xl font-semibold">
           {truncateText(tip?.title, 30)}
         </h1>
-        <p className="w-full text-sm lg:text-base text-gray-600 mt-2">
+        <div className="w-full text-sm lg:text-base text-gray-600 mt-2">
           {tip?.description?.length > 70 ? (
             <div
               dangerouslySetInnerHTML={{
@@ -45,7 +48,7 @@ const TipsCard = ({ tip, setTips }) => {
               }}
             ></div>
           )}
-        </p>
+        </div>
       </Link>
     </div>
   );
