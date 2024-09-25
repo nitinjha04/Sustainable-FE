@@ -6,7 +6,7 @@ import { MdEdit } from "react-icons/md";
 
 import { ShareButton } from "../Share";
 
-const TipsCard = ({ tip, setTips }) => {
+const TipsCard = ({ tip, setTips, edit = false }) => {
   return (
     <div className=" min-h-full relative border rounded-lg py-4 px-4 cursor-pointer flex flex-col items-center text-center bg-custom-bg-2 shadow-md hover:shadow-lg transition-shadow duration-300">
       <LikeButton post={tip} setPost={setTips} />
@@ -17,13 +17,15 @@ const TipsCard = ({ tip, setTips }) => {
         <div className=" bg-[#ffd700] cursor-default text-white text-xs lg:text-sm font-bold py-1 px-2 rounded-lg">
           {tip.rating || 0} ★
         </div>
-        <Link
-          to={`/add?type=tip&id=${tip._id}`}
-          className="  flex justify-center cursor-pointer bg-gray-100 border text-black text-xs lg:text-sm font-bold py-1 rounded-lg"
-        >
-          {/* {tip.rating || 0} ★ */}
-          <MdEdit className=" text-2xl items-center text-center flex justify-center self-center" />
-        </Link>
+        {edit && (
+          <Link
+            to={`/add?type=tip&id=${tip._id}`}
+            className="  flex justify-center cursor-pointer bg-gray-100 border text-black text-xs lg:text-sm font-bold py-1 rounded-lg"
+          >
+            {/* {tip.rating || 0} ★ */}
+            <MdEdit className=" text-2xl items-center text-center flex justify-center self-center" />
+          </Link>
+        )}
       </div>
       <Link to={`/tips/${tip._id}`} className="flex flex-col">
         <img

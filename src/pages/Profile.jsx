@@ -73,18 +73,25 @@ const Profile = () => {
                 posts.map((post, index) => (
                   <div key={post._id}>
                     {activeTab === "Tips" ? (
-                      <TipsCard key={post._id} tip={post} setTips={setPosts} />
+                      <TipsCard
+                        key={post._id}
+                        tip={post}
+                        setTips={setPosts}
+                        edit
+                      />
                     ) : activeTab === "Products" ? (
                       <ProductCard
                         key={post._id}
                         product={post}
                         setProducts={setPosts}
+                        edit
                       />
                     ) : (
                       <ArticleCard
                         key={post._id}
                         article={post}
                         setArticles={setPosts}
+                        edit
                       />
                     )}
                   </div>

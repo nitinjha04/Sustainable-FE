@@ -6,7 +6,7 @@ import { truncateText } from "../../data/func";
 import { MdEdit } from "react-icons/md";
 import { ShareButton } from "../Share";
 
-const ProductCard = ({ product, setProducts }) => {
+const ProductCard = ({ product, setProducts, edit = false }) => {
   return (
     <div className=" min-h-full bg-custom-bg-2 z-10 relative p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
       <LikeButton post={product} setPost={setProducts} />
@@ -16,13 +16,15 @@ const ProductCard = ({ product, setProducts }) => {
         <div className=" bg-[#ffd700] cursor-default text-white text-xs lg:text-sm font-bold py-1 px-2 rounded-lg">
           {product.rating || 0} ★
         </div>
-        <Link
-          to={`/add?type=product&id=${product._id}`}
-          className="  flex justify-center cursor-pointer bg-gray-100 border text-black text-xs lg:text-sm font-bold py-1 rounded-lg"
-        >
-          {/* {tip.rating || 0} ★ */}
-          <MdEdit className=" text-2xl items-center text-center flex justify-center self-center" />
-        </Link>
+        {edit && (
+          <Link
+            to={`/add?type=product&id=${product._id}`}
+            className="  flex justify-center cursor-pointer bg-gray-100 border text-black text-xs lg:text-sm font-bold py-1 rounded-lg"
+          >
+            {/* {tip.rating || 0} ★ */}
+            <MdEdit className=" text-2xl items-center text-center flex justify-center self-center" />
+          </Link>
+        )}
       </div>
       <Link to={`/products/${product._id}`} className=" ">
         <img
